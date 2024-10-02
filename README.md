@@ -1,3 +1,72 @@
+"Sis257_Pizza_House" es una pizzería innovadora que se especializa en ofrecer una amplia variedad de pizzas deliciosas, preparadas con ingredientes frescos y de alta calidad. El objetivo principal de este negocio es ofrecer a los clientes una experiencia gastronómica única, combinando sabores tradicionales con nuevas propuestas culinarias, además de brindar un servicio de pedidos y entregas rápido y eficiente. La pizzería también ofrece promociones exclusivas y descuentos para fidelizar a sus clientes.
+
+El sistema web que estás desarrollando para "Sis257_Pizza_House" permitirá gestionar de manera eficiente las operaciones internas, como la administración de productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago, y las promociones vigentes. Los empleados podrán gestionar pedidos, y los clientes podrán hacer sus pedidos en línea de forma fácil y rápida.
+
+1. Clientes
+id_cliente: Identificador único del cliente.
+razon_social: Nombre completo o razón social del cliente.
+nit: Número de Identificación Tributaria.
+telefono: Número de teléfono del cliente.
+email: Correo electrónico del cliente.
+direccion: Dirección de entrega del cliente.
+2. Empleados
+id_empleado: Identificador único del empleado.
+nombre: Nombre completo del empleado.
+cargo: Cargo que ocupa en la pizzería (por ejemplo, repartidor, cajero).
+telefono: Número de teléfono del empleado.
+email: Correo electrónico del empleado.
+salario: Salario del empleado.
+fecha_nacimiento: Fecha de nacimiento del empleado.
+3. Productos (Pizzas)
+id_producto: Identificador único del producto.
+nombre: Nombre de la pizza o producto.
+precio: Precio del producto.
+id_categoria: Categoría a la que pertenece (por ejemplo, pizza, bebida).
+disponibilidad: Indica si el producto está disponible.
+tamanio: Tamaño del producto (mediano, grande, etc.).
+4. Categorias de Productos
+id_categoria: Identificador único de la categoría.
+nombre: Nombre de la categoría (por ejemplo, Pizzas, Bebidas, Complementos).
+5. Pedidos
+id_pedido: Identificador único del pedido.
+id_cliente: Cliente que hizo el pedido.
+id_empleado: Empleado que atendió o entregó el pedido.
+fecha: Fecha en que se realizó el pedido.
+estado: Estado del pedido (pendiente, entregado, cancelado).
+total: Total a pagar del pedido.
+id_promocion: Promoción aplicada al pedido, si existe.
+direccion_entrega: Dirección de entrega del pedido.
+6. Detalles de Pedidos
+id_detalle: Identificador único del detalle.
+id_pedido: Pedido al que pertenece el detalle.
+id_producto: Producto seleccionado en el pedido.
+cantidad: Cantidad del producto pedido.
+precio_unitario: Precio por unidad del producto.
+descuento: Descuento aplicado, si corresponde.
+7. Ingredientes
+id_ingrediente: Identificador único del ingrediente.
+nombre: Nombre del ingrediente (queso, pepperoni, etc.).
+precio: Precio adicional, si se cobra por ingrediente extra.
+8. Productos-Ingredientes (Relación N a M)
+id_producto_ingrediente: Identificador único de la relación.
+id_producto: Producto al que pertenece el ingrediente.
+id_ingrediente: Ingrediente relacionado con el producto.
+9. Métodos de Pago
+id_metodo_pago: Identificador único del método de pago.
+id_pedido: Pedido asociado al pago.
+tipo: Tipo de pago (tarjeta, efectivo, transferencia).
+monto: Monto pagado.
+estado: Estado del pago (pagado, pendiente, rechazado).
+10. Promociones
+id_promocion: Identificador único de la promoción.
+descripcion_promocion: Descripción de la promoción.
+descuento_porcentaje: Porcentaje de descuento aplicado.
+fecha_inicio: Fecha de inicio de la promoción.
+fecha_fin: Fecha de fin de la promoción.
+
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
