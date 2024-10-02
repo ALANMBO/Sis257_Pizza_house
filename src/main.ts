@@ -15,7 +15,7 @@ async function bootstrap() {
     .setTitle('API Rest SIS257_Pizza_House')
     .setDescription('API Rest del Proyecto de SIS257_Pizza_House')
     .setVersion('1.0')
-    .addTag('')
+    .addTag('categorias_productos')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apiSIS257_Pizza_House', app, document);
