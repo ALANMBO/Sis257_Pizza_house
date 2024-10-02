@@ -1,68 +1,110 @@
-"Sis257_Pizza_House" es una pizzería innovadora que se especializa en ofrecer una amplia variedad de pizzas deliciosas, preparadas con ingredientes frescos y de alta calidad. El objetivo principal de este negocio es ofrecer a los clientes una experiencia gastronómica única, combinando sabores tradicionales con nuevas propuestas culinarias, además de brindar un servicio de pedidos y entregas rápido y eficiente. La pizzería también ofrece promociones exclusivas y descuentos para fidelizar a sus clientes.
+<p>"Sis257_Pizza_House" es una pizzería innovadora que se especializa en ofrecer una amplia variedad de pizzas deliciosas, preparadas con ingredientes frescos y de alta calidad. El objetivo principal de este negocio es ofrecer a los clientes una experiencia gastronómica única, combinando sabores tradicionales con nuevas propuestas culinarias, además de brindar un servicio de pedidos y entregas rápido y eficiente. La pizzería también ofrece promociones exclusivas y descuentos para fidelizar a sus clientes.</p>
 
-El sistema web que estás desarrollando para "Sis257_Pizza_House" permitirá gestionar de manera eficiente las operaciones internas, como la administración de productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago, y las promociones vigentes. Los empleados podrán gestionar pedidos, y los clientes podrán hacer sus pedidos en línea de forma fácil y rápida.
+<p>El sistema web que estás desarrollando para "Sis257_Pizza_House" permitirá gestionar de manera eficiente las operaciones internas, como la administración de productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago, y las promociones vigentes. Los empleados podrán gestionar pedidos, y los clientes podrán hacer sus pedidos en línea de forma fácil y rápida.</p>
 
-1. Clientes
-id_cliente: Identificador único del cliente.
-razon_social: Nombre completo o razón social del cliente.
-nit: Número de Identificación Tributaria.
-telefono: Número de teléfono del cliente.
-email: Correo electrónico del cliente.
-direccion: Dirección de entrega del cliente.
-2. Empleados
-id_empleado: Identificador único del empleado.
-nombre: Nombre completo del empleado.
-cargo: Cargo que ocupa en la pizzería (por ejemplo, repartidor, cajero).
-telefono: Número de teléfono del empleado.
-email: Correo electrónico del empleado.
-salario: Salario del empleado.
-fecha_nacimiento: Fecha de nacimiento del empleado.
-3. Productos (Pizzas)
-id_producto: Identificador único del producto.
-nombre: Nombre de la pizza o producto.
-precio: Precio del producto.
-id_categoria: Categoría a la que pertenece (por ejemplo, pizza, bebida).
-disponibilidad: Indica si el producto está disponible.
-tamanio: Tamaño del producto (mediano, grande, etc.).
-4. Categorias de Productos
-id_categoria: Identificador único de la categoría.
-nombre: Nombre de la categoría (por ejemplo, Pizzas, Bebidas, Complementos).
-5. Pedidos
-id_pedido: Identificador único del pedido.
-id_cliente: Cliente que hizo el pedido.
-id_empleado: Empleado que atendió o entregó el pedido.
-fecha: Fecha en que se realizó el pedido.
-estado: Estado del pedido (pendiente, entregado, cancelado).
-total: Total a pagar del pedido.
-id_promocion: Promoción aplicada al pedido, si existe.
-direccion_entrega: Dirección de entrega del pedido.
-6. Detalles de Pedidos
-id_detalle: Identificador único del detalle.
-id_pedido: Pedido al que pertenece el detalle.
-id_producto: Producto seleccionado en el pedido.
-cantidad: Cantidad del producto pedido.
-precio_unitario: Precio por unidad del producto.
-descuento: Descuento aplicado, si corresponde.
-7. Ingredientes
-id_ingrediente: Identificador único del ingrediente.
-nombre: Nombre del ingrediente (queso, pepperoni, etc.).
-precio: Precio adicional, si se cobra por ingrediente extra.
-8. Productos-Ingredientes (Relación N a M)
-id_producto_ingrediente: Identificador único de la relación.
-id_producto: Producto al que pertenece el ingrediente.
-id_ingrediente: Ingrediente relacionado con el producto.
-9. Métodos de Pago
-id_metodo_pago: Identificador único del método de pago.
-id_pedido: Pedido asociado al pago.
-tipo: Tipo de pago (tarjeta, efectivo, transferencia).
-monto: Monto pagado.
-estado: Estado del pago (pagado, pendiente, rechazado).
-10. Promociones
-id_promocion: Identificador único de la promoción.
-descripcion_promocion: Descripción de la promoción.
-descuento_porcentaje: Porcentaje de descuento aplicado.
-fecha_inicio: Fecha de inicio de la promoción.
-fecha_fin: Fecha de fin de la promoción.
+
+<ul>
+  <li>Clientes
+    <ul>
+      <li>id_cliente: Identificador único del cliente.</li>
+      <li>razon_social: Nombre completo o razón social del cliente.</li>
+      <li>nit: Número de Identificación Tributaria.</li>
+      <li>telefono: Número de teléfono del cliente.</li>
+      <li>email: Correo electrónico del cliente.</li>
+      <li>direccion: Dirección de entrega del cliente.</li>
+    </ul>
+  </li>
+
+  <li>Empleados
+    <ul>
+      <li>id_empleado: Identificador único del empleado.</li>
+      <li>nombre: Nombre completo del empleado.</li>
+      <li>cargo: Cargo que ocupa en la pizzería (por ejemplo, repartidor, cajero).</li>
+      <li>telefono: Número de teléfono del empleado.</li>
+      <li>email: Correo electrónico del empleado.</li>
+      <li>salario: Salario del empleado.</li>
+      <li>fecha_nacimiento: Fecha de nacimiento del empleado.</li>
+    </ul>
+  </li>
+
+  <li>Productos (Pizzas)
+    <ul>
+      <li>id_producto: Identificador único del producto.</li>
+      <li>nombre: Nombre de la pizza o producto.</li>
+      <li>precio: Precio del producto.</li>
+      <li>id_categoria: Categoría a la que pertenece (por ejemplo, pizza, bebida).</li>
+      <li>disponibilidad: Indica si el producto está disponible.</li>
+      <li>tamanio: Tamaño del producto (mediano, grande, etc.).</li>
+    </ul>
+  </li>
+
+  <li>Categorias de Productos
+    <ul>
+      <li>id_categoria: Identificador único de la categoría.</li>
+      <li>nombre: Nombre de la categoría (por ejemplo, Pizzas, Bebidas, Complementos).</li>
+    </ul>
+  </li>
+
+  <li>Pedidos
+    <ul>
+      <li>id_pedido: Identificador único del pedido.</li>
+      <li>id_cliente: Cliente que hizo el pedido.</li>
+      <li>id_empleado: Empleado que atendió o entregó el pedido.</li>
+      <li>fecha: Fecha en que se realizó el pedido.</li>
+      <li>estado: Estado del pedido (pendiente, entregado, cancelado).</li>
+      <li>total: Total a pagar del pedido.</li>
+      <li>id_promocion: Promoción aplicada al pedido, si existe.</li>
+      <li>direccion_entrega: Dirección de entrega del pedido.</li>
+    </ul>
+  </li>
+
+  <li>Detalles de Pedidos
+    <ul>
+      <li>id_detalle: Identificador único del detalle.</li>
+      <li>id_pedido: Pedido al que pertenece el detalle.</li>
+      <li>id_producto: Producto seleccionado en el pedido.</li>
+      <li>cantidad: Cantidad del producto pedido.</li>
+      <li>precio_unitario: Precio por unidad del producto.</li>
+      <li>descuento: Descuento aplicado, si corresponde.</li>
+    </ul>
+  </li>
+
+  <li>Ingredientes
+    <ul>
+      <li>id_ingrediente: Identificador único del ingrediente.</li>
+      <li>nombre: Nombre del ingrediente (queso, pepperoni, etc.).</li>
+      <li>precio: Precio adicional, si se cobra por ingrediente extra.</li>
+    </ul>
+  </li>
+
+  <li>Productos-Ingredientes (Relación N a M)
+    <ul>
+      <li>id_producto_ingrediente: Identificador único de la relación.</li>
+      <li>id_producto: Producto al que pertenece el ingrediente.</li>
+      <li>id_ingrediente: Ingrediente relacionado con el producto.</li>
+    </ul>
+  </li>
+
+  <li>Métodos de Pago
+    <ul>
+      <li>id_metodo_pago: Identificador único del método de pago.</li>
+      <li>id_pedido: Pedido asociado al pago.</li>
+      <li>tipo: Tipo de pago (tarjeta, efectivo, transferencia).</li>
+      <li>monto: Monto pagado.</li>
+      <li>estado: Estado del pago (pagado, pendiente, rechazado).</li>
+    </ul>
+  </li>
+
+  <li>Promociones
+    <ul>
+      <li>id_promocion: Identificador único de la promoción.</li>
+      <li>descripcion_promocion: Descripción de la promoción.</li>
+      <li>descuento_porcentaje: Porcentaje de descuento aplicado.</li>
+      <li>fecha_inicio: Fecha de inicio de la promoción.</li>
+      <li>fecha_fin: Fecha de fin de la promoción.</li>
+    </ul>
+  </li>
+</ul>
 
 
 
