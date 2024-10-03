@@ -18,7 +18,7 @@ export class ClientesService {
 
   async create(createClienteDto: CreateClienteDto): Promise<Cliente> {
     const existe = await this.clientesRepository.findOneBy({
-      nit: createClienteDto.nit, 
+      nit: createClienteDto.nit,
     });
     if (existe) {
       throw new ConflictException('El cliente con este NIT ya existe');

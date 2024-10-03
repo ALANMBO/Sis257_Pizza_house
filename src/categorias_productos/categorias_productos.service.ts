@@ -16,7 +16,9 @@ export class CategoriasProductosService {
     private categoriasRepository: Repository<CategoriasProducto>,
   ) {}
 
-  async create(createCategoriasProductoDto: CreateCategoriasProductoDto): Promise<CategoriasProducto> {
+  async create(
+    createCategoriasProductoDto: CreateCategoriasProductoDto,
+  ): Promise<CategoriasProducto> {
     const existe = await this.categoriasRepository.findOneBy({
       nombre: createCategoriasProductoDto.nombre.trim(),
     });
@@ -24,7 +26,7 @@ export class CategoriasProductosService {
 
     const categoria = new CategoriasProducto();
     categoria.nombre = createCategoriasProductoDto.nombre.trim();
-    
+
     return this.categoriasRepository.save(categoria);
   }
 
@@ -43,11 +45,14 @@ export class CategoriasProductosService {
     updateCategoriasProductoDto: UpdateCategoriasProductoDto,
   ): Promise<CategoriasProducto> {
     const categoria = await this.findOne(id);
-    const categoriaUpdate = Object.assign(categoria, updateCategoriasProductoDto);
+    const categoriaUpdate = Object.assign(
+      categoria,
+      updateCategoriasProductoDto,
+    );
     return this.categoriasRepository.save(categoriaUpdate);
   }
 
-  async remove(id: number){
+  async remove(id: number) {
     const categoria = await this.findOne(id);
     await this.categoriasRepository.softRemove(categoria);
   }
