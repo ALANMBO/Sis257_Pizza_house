@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Put, Param, Delete } from '@nestjs/common'; // Agrega Put
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { CategoriasProductosService } from './categorias_productos.service';
 import { CreateCategoriasProductoDto } from './dto/create-categorias_producto.dto';
 import { UpdateCategoriasProductoDto } from './dto/update-categorias_producto.dto';
