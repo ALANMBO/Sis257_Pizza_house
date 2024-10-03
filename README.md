@@ -1,6 +1,6 @@
 <p>"Sis257_Pizza_House" es una pizzería innovadora que se especializa en ofrecer una amplia variedad de pizzas deliciosas, preparadas con ingredientes frescos y de alta calidad. El objetivo principal de este negocio es ofrecer a los clientes una experiencia gastronómica única, combinando sabores tradicionales con nuevas propuestas culinarias, además de brindar un servicio de pedidos y entregas rápido y eficiente. La pizzería también ofrece promociones exclusivas y descuentos para fidelizar a sus clientes.</p>
 
-<p>El sistema web que estás desarrollando para "Sis257_Pizza_House" permitirá gestionar de manera eficiente las operaciones internas, como la administración de productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago, y las promociones vigentes. Los empleados podrán gestionar pedidos, y los clientes podrán hacer sus pedidos en línea de forma fácil y rápida.</p>
+<p>El sistema web "Sis257_Pizza_House" permitirá gestionar de manera eficiente las operaciones internas, como la administración de productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago, y las promociones vigentes. Los empleados podrán gestionar pedidos, y los clientes podrán hacer sus pedidos en línea de forma fácil y rápida.</p>
 
 
 <ul>
