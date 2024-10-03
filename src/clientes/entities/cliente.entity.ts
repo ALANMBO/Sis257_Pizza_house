@@ -1,13 +1,18 @@
 import { Column, Entity, PrimaryGeneratedColumn, DeleteDateColumn } from 'typeorm';
+@Entity('Cliente')
+export class Cliente {
 
-@Entity('Categorias_producto')
-export class CategoriasProducto {
   @PrimaryGeneratedColumn('identity')
   id: number;
 
   @Column('varchar', { length: 15 })
-  nombre: string;
+  razon_social: string;
+
+  @Column('varchar', { length: 15 })
+  nit: number;
 
   @DeleteDateColumn({ type: 'timestamp' ,name: 'fecha_eliminacion', select: false }) 
   deletedAt?: Date;
+
+
 }
