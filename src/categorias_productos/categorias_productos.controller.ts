@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Put, Param, Delete } from '@nestjs/common'; // Agrega Put
 import { CategoriasProductosService } from './categorias_productos.service';
 import { CreateCategoriasProductoDto } from './dto/create-categorias_producto.dto';
 import { UpdateCategoriasProductoDto } from './dto/update-categorias_producto.dto';
@@ -23,7 +23,6 @@ export class CategoriasProductosController {
   findOne(@Param('id') id: string) {
     return this.categoriasProductosService.findOne(+id);
   }
-
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCategoriasProductoDto: UpdateCategoriasProductoDto) {
     return this.categoriasProductosService.update(+id, updateCategoriasProductoDto);
