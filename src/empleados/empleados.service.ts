@@ -17,7 +17,6 @@ export class EmpleadosService {
   ) {}
 
   async create(createEmpleadoDto: CreateEmpleadoDto): Promise<Empleado> {
-    
     const existe = await this.empleadoRepository.findOneBy({
       email: createEmpleadoDto.email.trim(),
     });
@@ -28,10 +27,10 @@ export class EmpleadosService {
     const empleado = new Empleado();
     empleado.nombre = createEmpleadoDto.nombre.trim();
     empleado.cargo = createEmpleadoDto.cargo.trim();
-    empleado.telefono = createEmpleadoDto.telefono.trim();
+    empleado.telefono = createEmpleadoDto.telefono; 
     empleado.email = createEmpleadoDto.email.trim();
     empleado.salario = createEmpleadoDto.salario;
-    empleado.fechaNacimiento = createEmpleadoDto.fecha_nacimiento; 
+    empleado.fecha_nacimiento = createEmpleadoDto.fecha_nacimiento; 
 
     return this.empleadoRepository.save(empleado);
   }
@@ -53,8 +52,23 @@ export class EmpleadosService {
     updateEmpleadoDto: UpdateEmpleadoDto,
   ): Promise<Empleado> {
     const empleado = await this.findOne(id);
-    const empleadoUpdate = Object.assign(empleado, updateEmpleadoDto);
-    return this.empleadoRepository.save(empleadoUpdate);
+
+    if (updateEmpleadoDto.email && updateEmpleadoDto.email !== empleado.email) {
+      const existe = await this.empleadoRepository.findOneBy({
+        email: updateEmpleadoDto.email.trim(),
+      });
+      if (existe && existe.id !== id) {
+        throw new ConflictException('Ya existe un empleado con este email');
+      }
+    }
+    empleado.nombre = updateEmpleadoDto.nombre?.trim() || empleado.nombre;
+    empleado.cargo = updateEmpleadoDto.cargo?.trim() || empleado.cargo;
+    empleado.telefono = updateEmpleadoDto.telefono || empleado.telefono; 
+    empleado.email = updateEmpleadoDto.email?.trim() || empleado.email;
+    empleado.salario = updateEmpleadoDto.salario || empleado.salario; 
+    empleado.fecha_nacimiento = updateEmpleadoDto.fecha_nacimiento || empleado.fecha_nacimiento; 
+
+    return this.empleadoRepository.save(empleado);
   }
 
   async remove(id: number) {
@@ -62,4 +76,3 @@ export class EmpleadosService {
     return this.empleadoRepository.softRemove(empleado);
   }
 }
-
