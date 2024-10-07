@@ -7,6 +7,8 @@ import { CategoriasProductosModule } from './categorias_productos/categorias_pro
 import { ClientesModule } from './clientes/clientes.module';
 import { EmpleadosModule } from './empleados/empleados.module';
 import { IngredientesModule } from './ingredientes/ingredientes.module';
+import { PromocionesModule } from './promociones/promociones.module';
+import { PedidosModule } from './pedidos/pedidos.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { IngredientesModule } from './ingredientes/ingredientes.module';
     ClientesModule,
     EmpleadosModule,
     IngredientesModule,
+    PromocionesModule,
+    PedidosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
