@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, IsEmail, IsNumber, IsDate, MaxLength, Min, IsDateString } from "class-validator";
+import { IsNotEmpty, IsString, IsDateString } from "class-validator";
 import { Type } from 'class-transformer';
 
 export class CreatePromocionDto {

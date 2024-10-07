@@ -17,7 +17,7 @@ export class PedidosService {
   ) {}
 
   async create(createPedidoDto: CreatePedidoDto): Promise<Pedido> {
-    // Verificar si ya existe un pedido con el mismo id_cliente y fecha
+    
     const existe = await this.pedidosRepository.findOneBy({
       id_cliente: createPedidoDto.id_cliente,
       fecha: createPedidoDto.fecha,
@@ -32,7 +32,7 @@ export class PedidosService {
     pedido.fecha = createPedidoDto.fecha;
     pedido.estado = createPedidoDto.estado.trim();
     pedido.total = createPedidoDto.total;
-    pedido.id_promocion = createPedidoDto.id_promocion; // Opcional
+    pedido.id_promocion = createPedidoDto.id_promocion; 
     pedido.direccion_entrega = createPedidoDto.direccion_entrega.trim();
 
     return this.pedidosRepository.save(pedido);

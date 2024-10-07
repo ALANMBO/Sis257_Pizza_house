@@ -5,9 +5,9 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreatePromocionDto } from './dto/create-promocion.dto'; // Asegúrate de que esta ruta sea correcta
-import { UpdatePromocionDto } from './dto/update-promocion.dto'; // Asegúrate de que esta ruta sea correcta
-import { promociones } from './entities/promocion.entity'; // Asegúrate de que esta ruta sea correcta
+import { CreatePromocionDto } from './dto/create-promocion.dto'; 
+import { UpdatePromocionDto } from './dto/update-promocion.dto'; 
+import { promociones } from './entities/promocion.entity';
 
 @Injectable()
 export class PromocionesService {
@@ -26,7 +26,7 @@ export class PromocionesService {
 
     const promocion = new promociones();
     promocion.descripcion_promocion = createPromocionDto.descripcion_promocion.trim();
-    promocion.descripcion_promocion = createPromocionDto.descripcion_promocion.trim(); // Ajusta según las propiedades que necesites
+    promocion.descripcion_promocion = createPromocionDto.descripcion_promocion.trim(); 
 
     return this.promocionesRepository.save(promocion);
   }
