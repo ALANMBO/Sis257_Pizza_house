@@ -4,20 +4,17 @@
 
 
 <ul>
-  <li>Clientes
+  <li>clientes
     <ul>
-      <li>id_cliente: Identificador único del cliente.</li>
+      <li>id: Identificador único del cliente.</li>
       <li>razon_social: Nombre completo o razón social del cliente.</li>
       <li>nit: Número de Identificación Tributaria.</li>
-      <li>telefono: Número de teléfono del cliente.</li>
-      <li>email: Correo electrónico del cliente.</li>
-      <li>direccion: Dirección de entrega del cliente.</li>
     </ul>
   </li>
 
-  <li>Empleados
+  <li>empleados
     <ul>
-      <li>id_empleado: Identificador único del empleado.</li>
+      <li>id: Identificador único del empleado.</li>
       <li>nombre: Nombre completo del empleado.</li>
       <li>cargo: Cargo que ocupa en la pizzería (por ejemplo, repartidor, cajero).</li>
       <li>telefono: Número de teléfono del empleado.</li>
@@ -27,9 +24,9 @@
     </ul>
   </li>
 
-  <li>Productos (Pizzas)
+  <li>productos (Pizzas)
     <ul>
-      <li>id_producto: Identificador único del producto.</li>
+      <li>id: Identificador único del producto.</li>
       <li>nombre: Nombre de la pizza o producto.</li>
       <li>precio: Precio del producto.</li>
       <li>id_categoria: Categoría a la que pertenece (por ejemplo, pizza, bebida).</li>
@@ -38,16 +35,16 @@
     </ul>
   </li>
 
-  <li>Categorias de Productos
+  <li>categorias_productos
     <ul>
-      <li>id_categoria: Identificador único de la categoría.</li>
+      <li>id: Identificador único de la categoría.</li>
       <li>nombre: Nombre de la categoría (por ejemplo, Pizzas, Bebidas, Complementos).</li>
     </ul>
   </li>
 
-  <li>Pedidos
+  <li>pedidos
     <ul>
-      <li>id_pedido: Identificador único del pedido.</li>
+      <li>id: Identificador único del pedido.</li>
       <li>id_cliente: Cliente que hizo el pedido.</li>
       <li>id_empleado: Empleado que atendió o entregó el pedido.</li>
       <li>fecha: Fecha en que se realizó el pedido.</li>
@@ -58,9 +55,9 @@
     </ul>
   </li>
 
-  <li>Detalles de Pedidos
+  <li>detalles_pedidos
     <ul>
-      <li>id_detalle: Identificador único del detalle.</li>
+      <li>id: Identificador único del detalle.</li>
       <li>id_pedido: Pedido al que pertenece el detalle.</li>
       <li>id_producto: Producto seleccionado en el pedido.</li>
       <li>cantidad: Cantidad del producto pedido.</li>
@@ -69,23 +66,22 @@
     </ul>
   </li>
 
-  <li>Ingredientes
+  <li>ingredientes
     <ul>
-      <li>id_ingrediente: Identificador único del ingrediente.</li>
+      <li>id: Identificador único del ingrediente.</li>
       <li>nombre: Nombre del ingrediente (queso, pepperoni, etc.).</li>
-      <li>precio: Precio adicional, si se cobra por ingrediente extra.</li>
     </ul>
   </li>
 
-  <li>Productos-Ingredientes (Relación N a M)
+  <li>productos_ingredientes (Relación N a M)
     <ul>
-      <li>id_producto_ingrediente: Identificador único de la relación.</li>
+      <li>id: Identificador único de la relación.</li>
       <li>id_producto: Producto al que pertenece el ingrediente.</li>
       <li>id_ingrediente: Ingrediente relacionado con el producto.</li>
     </ul>
   </li>
 
-  <li>Métodos de Pago
+  <li>métodos_pagos
     <ul>
       <li>id_metodo_pago: Identificador único del método de pago.</li>
       <li>id_pedido: Pedido asociado al pago.</li>
@@ -95,10 +91,10 @@
     </ul>
   </li>
 
-  <li>Promociones
+  <li>promociones
     <ul>
-      <li>id_promocion: Identificador único de la promoción.</li>
-      <li>descripcion_promocion: Descripción de la promoción.</li>
+      <li>id: Identificador único de la promoción.</li>
+      <li>descripcion: Descripción de la promoción.</li>
       <li>descuento_porcentaje: Porcentaje de descuento aplicado.</li>
       <li>fecha_inicio: Fecha de inicio de la promoción.</li>
       <li>fecha_fin: Fecha de fin de la promoción.</li>
