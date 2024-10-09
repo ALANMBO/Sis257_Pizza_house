@@ -15,7 +15,7 @@ export class ProductosService {
   constructor(
     @InjectRepository(Producto)
     private productosRepository: Repository<Producto>,
-  ) { }
+  ) {}
 
   async create(createProductoDto: CreateProductosDto): Promise<Producto> {
     const existe = await this.productosRepository.findOne({
@@ -31,6 +31,8 @@ export class ProductosService {
     producto.precio = createProductoDto.precio;
     producto.idCategoria = { id: createProductoDto.idCategoria } as CategoriasProducto;
 
+    producto.disponibilidad = createProductoDto.disponibilidad;  
+    producto.tamanio = createProductoDto.tamanio; 
     return this.productosRepository.save(producto);
   }
 
@@ -38,7 +40,7 @@ export class ProductosService {
     return this.productosRepository.find({ relations: ['idCategoria'] });
   }
 
-  async findOne(id: string): Promise<Producto> {
+  async findOne(id: number): Promise<Producto> {
     const producto = await this.productosRepository.findOne({
       where: { id },
       relations: ['idCategoria'],
@@ -47,16 +49,19 @@ export class ProductosService {
     return producto;
   }
 
-  async update(id: string, updateProductoDto: UpdateProductoDto): Promise<Producto> {
+  async update(id: number, updateProductoDto: UpdateProductoDto): Promise<Producto> { 
     const producto = await this.findOne(id);
     producto.nombre = updateProductoDto.nombre.trim();
     producto.precio = updateProductoDto.precio;
     producto.idCategoria = { id: updateProductoDto.idCategoria } as CategoriasProducto;
 
+    producto.disponibilidad = updateProductoDto.disponibilidad;  
+    producto.tamanio = updateProductoDto.tamanio;  
+
     return this.productosRepository.save(producto);
   }
 
-  async remove(id: string): Promise<void> {
+  async remove(id: number): Promise<void> { 
     const producto = await this.findOne(id);
     await this.productosRepository.softRemove(producto);
   }

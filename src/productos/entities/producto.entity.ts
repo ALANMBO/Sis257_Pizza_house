@@ -5,11 +5,13 @@ import {
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
-  } from 'typeorm';
-  @Entity()
+    DeleteDateColumn 
+} from 'typeorm';
+
+@Entity()
 export class Producto {
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;  
   
     @Column('varchar', { length: 70 })
     nombre: string;
@@ -18,12 +20,15 @@ export class Producto {
     precio: number;
 
     @Column({ nullable: true })
-    disponibilidad?: string;
+    disponibilidad?: number;
   
     @Column({ nullable: true })
-    tamanio?: string;
+    tamanio?: number;
+
+    @DeleteDateColumn()
+    deletedAt?: Date; 
 
     @ManyToOne(() => CategoriasProducto, (categoria) => categoria.productos)
     @JoinColumn({ name: 'idCategoria', referencedColumnName: 'id' })
-    idCategoria: CategoriasProducto; 
+    idCategoria: CategoriasProducto;
 }
