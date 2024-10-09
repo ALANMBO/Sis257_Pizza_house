@@ -6,6 +6,7 @@ import {
   IsOptional,
   IsDefined,
   IsDate,
+  IsISO8601,
 } from 'class-validator';
 
 export class CreatePedidoDto {
@@ -26,8 +27,8 @@ export class CreatePedidoDto {
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo fecha es obligatorio' })
-  @IsDate({ message: 'El campo fecha debe ser obligatorio' }) 
-  readonly fecha: Date; 
+  @IsISO8601({strict : false})
+  readonly fecha: string ; 
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo estado es obligatorio' })

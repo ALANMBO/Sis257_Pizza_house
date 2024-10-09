@@ -1,3 +1,4 @@
+import { IsDate } from 'class-validator';
 import { Cliente } from 'src/clientes/entities/cliente.entity';
 import { Empleado } from 'src/empleados/entities/empleado.entity';
 import { Promocion } from 'src/promociones/entities/promocion.entity';
@@ -23,8 +24,9 @@ export class Pedido {
 
   @Column('int', { name: 'id_promocion', nullable: true })
   idPromocion?: number;
-
-  @Column('date')
+  
+  @IsDate()
+  @Column({type:'date'})
   fecha: Date;
 
   @Column('varchar', { length: 20 })

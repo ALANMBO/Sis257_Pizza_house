@@ -17,6 +17,7 @@ export class PedidosService {
   ) {}
 
   async create(createPedidoDto: CreatePedidoDto): Promise<Pedido> {
+    console.log("createPedidoDto", createPedidoDto)
     const existe = await this.pedidosRepository.findOneBy({
       idCliente: createPedidoDto.idCliente,
     });
@@ -28,8 +29,8 @@ export class PedidosService {
     const pedido = new Pedido();
     pedido.idCliente = createPedidoDto.idCliente;
     pedido.idEmpleado = createPedidoDto.idEmpleado;
-    //inserte fecha nose incerto///
-    pedido.fecha = createPedidoDto.fecha;
+    pedido.fecha = new Date(createPedidoDto.fecha);
+    console.log("fecha",pedido.fecha)
     pedido.estado = createPedidoDto.estado.trim();
     pedido.total = createPedidoDto.total;
     pedido.idPromocion = createPedidoDto.idPromocion; 
@@ -42,18 +43,18 @@ export class PedidosService {
     return this.pedidosRepository.find();
   }
 
- async findOne(id: number): Promise<Pedido> {
-  const pedido = await this.pedidosRepository.findOne({
-    where: { id },
-    relations: ['cliente', 'empleado', 'promocion'],
-  });
-  
-  if (!pedido) {
-    throw new NotFoundException('El pedido no existe');
+  async findOne(id: number): Promise<Pedido> {
+    const pedido = await this.pedidosRepository.findOne({
+      where: { id },
+      relations: ['cliente', 'empleado', 'promocion'],
+    });
+    
+    if (!pedido) {
+      throw new NotFoundException('El pedido no existe');
+    }
+    
+    return pedido;
   }
-  
-  return pedido;
-}
   async update(
     id: number,
     updatePedidoDto: UpdatePedidoDto,
