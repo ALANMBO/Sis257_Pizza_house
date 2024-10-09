@@ -9,6 +9,7 @@ import { EmpleadosModule } from './empleados/empleados.module';
 import { IngredientesModule } from './ingredientes/ingredientes.module';
 import { PromocionesModule } from './promociones/promociones.module';
 import { PedidosModule } from './pedidos/pedidos.module';
+import { ProductosModule } from './productos/productos.module';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { PedidosModule } from './pedidos/pedidos.module';
     EmpleadosModule,
     IngredientesModule,
     PromocionesModule,
-    PedidosModule
+    PedidosModule,
+    ProductosModule
   ],
   controllers: [AppController],
   providers: [AppService],

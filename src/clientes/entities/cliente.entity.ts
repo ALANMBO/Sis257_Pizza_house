@@ -17,7 +17,7 @@ export class Cliente {
 
   @Column('varchar', { length: 15 })
   nit: number; 
-
+// no deberia haber fecha de eliminacion del cliente//
   @DeleteDateColumn({
     type: 'timestamp',
     name: 'fecha_eliminacion',

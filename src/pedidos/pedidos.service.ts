@@ -28,7 +28,8 @@ export class PedidosService {
     const pedido = new Pedido();
     pedido.idCliente = createPedidoDto.idCliente;
     pedido.idEmpleado = createPedidoDto.idEmpleado;
-
+    //inserte fecha nose incerto///
+    pedido.fecha = createPedidoDto.fecha;
     pedido.estado = createPedidoDto.estado.trim();
     pedido.total = createPedidoDto.total;
     pedido.idPromocion = createPedidoDto.idPromocion; 

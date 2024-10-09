@@ -1,8 +1,11 @@
+
+import { Producto } from 'src/productos/entities/producto.entity';
 import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity('Categorias_producto')
@@ -19,4 +22,7 @@ export class CategoriasProducto {
     select: false,
   })
   deletedAt?: Date;
+
+  @OneToMany(() => Producto, (producto) => producto.idCategoria)
+  productos: Producto[]; 
 }
