@@ -17,23 +17,22 @@ export class PedidosService {
   ) {}
 
   async create(createPedidoDto: CreatePedidoDto): Promise<Pedido> {
-    
     const existe = await this.pedidosRepository.findOneBy({
-      id_cliente: createPedidoDto.id_cliente,
-      fecha: createPedidoDto.fecha,
+      idCliente: createPedidoDto.idCliente,
     });
+
     if (existe) {
-      throw new ConflictException('Ya existe un pedido con este cliente en la misma fecha');
+      throw new ConflictException('Ya existe un pedido con este el mismo idCliente ');
     }
 
     const pedido = new Pedido();
-    pedido.id_cliente = createPedidoDto.id_cliente;
-    pedido.id_empleado = createPedidoDto.id_empleado;
-    pedido.fecha = createPedidoDto.fecha;
+    pedido.idCliente = createPedidoDto.idCliente;
+    pedido.idEmpleado = createPedidoDto.idEmpleado;
+
     pedido.estado = createPedidoDto.estado.trim();
     pedido.total = createPedidoDto.total;
-    pedido.id_promocion = createPedidoDto.id_promocion; 
-    pedido.direccion_entrega = createPedidoDto.direccion_entrega.trim();
+    pedido.idPromocion = createPedidoDto.idPromocion; 
+    pedido.direccionEntrega = createPedidoDto.direccionEntrega.trim();
 
     return this.pedidosRepository.save(pedido);
   }
@@ -42,28 +41,30 @@ export class PedidosService {
     return this.pedidosRepository.find();
   }
 
-  async findOne(id: number): Promise<Pedido> {
-    const pedido = await this.pedidosRepository.findOneBy({ id });
-    if (!pedido) {
-      throw new NotFoundException('El pedido no existe');
-    }
-    return pedido;
+ async findOne(id: number): Promise<Pedido> {
+  const pedido = await this.pedidosRepository.findOne({
+    where: { id },
+    relations: ['cliente', 'empleado', 'promocion'],
+  });
+  
+  if (!pedido) {
+    throw new NotFoundException('El pedido no existe');
   }
-
+  
+  return pedido;
+}
   async update(
     id: number,
     updatePedidoDto: UpdatePedidoDto,
   ): Promise<Pedido> {
     const pedido = await this.findOne(id);
-
+    
     const pedidoUpdate = Object.assign(pedido, updatePedidoDto);
     return this.pedidosRepository.save(pedidoUpdate);
   }
 
   async remove(id: number) {
     const pedido = await this.findOne(id);
-    await this.pedidosRepository.softRemove(pedido);
+    return this.pedidosRepository.softRemove(pedido);
   }
 }
-
-

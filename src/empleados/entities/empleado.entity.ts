@@ -1,8 +1,10 @@
+import { Pedido } from 'src/pedidos/entities/pedido.entity';
 import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity('empleados')
@@ -27,10 +29,14 @@ export class Empleado {
 
   @Column('date')
   fecha_nacimiento: Date;
+
   @DeleteDateColumn({
     type: 'timestamp',
     name: 'fecha_eliminacion',
     select: false,
   })
   deletedAt?: Date;
+
+  @OneToMany(() => Pedido, (pedido) => pedido.empleado)
+  pedidos: Pedido[]; 
 }

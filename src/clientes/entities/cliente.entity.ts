@@ -1,10 +1,13 @@
+import { Pedido } from 'src/pedidos/entities/pedido.entity';
 import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
-@Entity('Cliente')
+
+@Entity('clientes') 
 export class Cliente {
   @PrimaryGeneratedColumn('identity')
   id: number;
@@ -13,7 +16,7 @@ export class Cliente {
   razon_social: string;
 
   @Column('varchar', { length: 15 })
-  nit: number;
+  nit: number; 
 
   @DeleteDateColumn({
     type: 'timestamp',
@@ -21,4 +24,7 @@ export class Cliente {
     select: false,
   })
   deletedAt?: Date;
+
+  @OneToMany(() => Pedido, (pedido) => pedido.cliente)
+  pedidos: Pedido[]; 
 }

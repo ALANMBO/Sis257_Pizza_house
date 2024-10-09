@@ -1,34 +1,46 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString, IsOptional, IsDate } from 'class-validator';
-
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  IsOptional,
+  IsDefined,
+  IsDate,
+} from 'class-validator';
 
 export class CreatePedidoDto {
-    @IsNotEmpty()
-    @IsNumber()
-    id_cliente: number;
+  @ApiProperty()
+  @IsDefined({ message: 'El campo idCliente debe estar definido' })
+  @IsNumber({}, { message: 'El campo idCliente debe ser numérico' })
+  readonly idCliente: number;
 
-    @IsNotEmpty()
-    @IsNumber()
-    id_empleado: number;
+  @ApiProperty()
+  @IsDefined({ message: 'El campo idEmpleado debe estar definido' })
+  @IsNumber({}, { message: 'El campo idEmpleado debe ser numérico' })
+  readonly idEmpleado: number;
 
-    @IsNotEmpty()
-    @IsDate()
-    fecha: Date;
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsNumber({}, { message: 'El campo idPromocion debe ser numérico' })
+  readonly idPromocion?: number; 
 
-    @IsNotEmpty()
-    @IsString()
-    estado: string;
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo fecha es obligatorio' })
+  @IsDate({ message: 'El campo fecha debe ser obligatorio' }) 
+  readonly fecha: Date; 
 
-    @IsNotEmpty()
-    @IsNumber()
-    total: number;
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo estado es obligatorio' })
+  @IsString({ message: 'El campo estado debe ser una cadena de texto' })
+  readonly estado: string;
 
-    @IsOptional()
-    @IsNumber()
-    id_promocion?: number; 
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo total es obligatorio' })
+  @IsNumber({}, { message: 'El campo total debe ser numérico' })
+  readonly total: number;
 
-    @IsNotEmpty()
-    @IsString()
-    direccion_entrega: string;
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo dirección de entrega es obligatorio' })
+  @IsString({ message: 'El campo dirección de entrega debe ser una cadena de texto' })
+  readonly direccionEntrega: string;
 }
-

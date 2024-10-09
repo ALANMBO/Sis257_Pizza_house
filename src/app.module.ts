@@ -29,7 +29,7 @@ import { PedidosModule } from './pedidos/pedidos.module';
     EmpleadosModule,
     IngredientesModule,
     PromocionesModule,
-    PedidosModule,
+    PedidosModule
   ],
   controllers: [AppController],
   providers: [AppService],
