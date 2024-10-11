@@ -5,7 +5,6 @@ import {
   IsString,
   IsOptional,
   IsDefined,
-  IsDate,
   IsISO8601,
 } from 'class-validator';
 

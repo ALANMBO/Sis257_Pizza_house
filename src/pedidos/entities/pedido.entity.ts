@@ -9,7 +9,9 @@ import {
   DeleteDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
+import { DetallePedido } from 'src/detalle_pedido/entities/detalle_pedido.entity'; 
 
 @Entity('pedidos')
 export class Pedido {
@@ -24,9 +26,9 @@ export class Pedido {
 
   @Column('int', { name: 'id_promocion', nullable: true })
   idPromocion?: number;
-  
+
   @IsDate()
-  @Column({type:'date'})
+  @Column({ type: 'date' })
   fecha: Date;
 
   @Column('varchar', { length: 20 })
@@ -57,5 +59,6 @@ export class Pedido {
   @JoinColumn({ name: 'id_promocion', referencedColumnName: 'id' })
   promocion: Promocion;
 
-  
+  @OneToMany(() => DetallePedido, (detalle) => detalle.pedido)
+  detalles: DetallePedido[];
 }
