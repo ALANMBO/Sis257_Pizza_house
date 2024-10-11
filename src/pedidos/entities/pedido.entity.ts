@@ -12,6 +12,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { DetallePedido } from 'src/detalle_pedido/entities/detalle_pedido.entity'; 
+import { MetodosPago } from 'src/metodos_pagos/entities/metodos_pago.entity';
 
 @Entity('pedidos')
 export class Pedido {
@@ -61,4 +62,7 @@ export class Pedido {
 
   @OneToMany(() => DetallePedido, (detalle) => detalle.pedido)
   detalles: DetallePedido[];
+  
+  @OneToMany(() => MetodosPago, (metodoPago) => metodoPago.pedido)
+  metodosPago: MetodosPago[];
 }

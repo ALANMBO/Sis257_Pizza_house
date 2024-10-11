@@ -11,6 +11,7 @@ import { PromocionesModule } from './promociones/promociones.module';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { ProductosModule } from './productos/productos.module';
 import { DetallePedidoModule } from './detalle_pedido/detalle_pedido.module';
+import { MetodosPagosModule } from './metodos_pagos/metodos_pagos.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { DetallePedidoModule } from './detalle_pedido/detalle_pedido.module';
     PromocionesModule,
     PedidosModule,
     ProductosModule,
-    DetallePedidoModule
+    DetallePedidoModule,
+    MetodosPagosModule
   ],
   controllers: [AppController],
   providers: [AppService],
