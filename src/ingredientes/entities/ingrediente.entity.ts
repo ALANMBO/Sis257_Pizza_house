@@ -1,9 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  DeleteDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, DeleteDateColumn, OneToMany } from 'typeorm';
+import { ProductosIngrediente } from 'src/productos_ingredientes/entities/productos_ingrediente.entity'; // Importar la tabla intermedia
 
 @Entity('ingredientes')
 export class Ingrediente {
@@ -19,4 +15,8 @@ export class Ingrediente {
     select: false,
   })
   deletedAt?: Date;
+
+  
+  @OneToMany(() => ProductosIngrediente, (productosIngrediente) => productosIngrediente.ingrediente)
+  productosIngredientes: ProductosIngrediente[]; 
 }

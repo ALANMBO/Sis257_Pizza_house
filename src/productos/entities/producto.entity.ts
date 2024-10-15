@@ -1,5 +1,6 @@
-import { CategoriasProducto } from "src/categorias_productos/entities/categorias_producto.entity";
-import { DetallePedido } from 'src/detalle_pedido/entities/detalle_pedido.entity'; 
+import { CategoriasProducto } from 'src/categorias_productos/entities/categorias_producto.entity';
+import { DetallePedido } from 'src/detalle_pedido/entities/detalle_pedido.entity';
+import { ProductosIngrediente } from 'src/productos_ingredientes/entities/productos_ingrediente.entity'; // Importar la tabla intermedia
 import {
     Column,
     Entity,
@@ -7,13 +8,13 @@ import {
     ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn,
-    DeleteDateColumn 
+    DeleteDateColumn
 } from 'typeorm';
 
-@Entity('productos') 
+@Entity('productos')
 export class Producto {
     @PrimaryGeneratedColumn()
-    id: number;  
+    id: number;
 
     @Column('varchar', { length: 70 })
     nombre: string;
@@ -28,12 +29,16 @@ export class Producto {
     tamanio?: number;
 
     @DeleteDateColumn()
-    deletedAt?: Date; 
+    deletedAt?: Date;
 
     @ManyToOne(() => CategoriasProducto, (categoria) => categoria.productos)
     @JoinColumn({ name: 'idCategoria', referencedColumnName: 'id' })
     idCategoria: CategoriasProducto;
 
-    @OneToMany(() => DetallePedido, (detalle) => detalle.producto) 
+    @OneToMany(() => DetallePedido, (detalle) => detalle.producto)
     detalles: DetallePedido[];
+
+
+    @OneToMany(() => ProductosIngrediente, (productosIngrediente) => productosIngrediente.producto)
+    productosIngredientes: ProductosIngrediente[]; 
 }
