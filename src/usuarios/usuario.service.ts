@@ -27,7 +27,7 @@ export class UsuariosService {
     const usuario = new Usuario();
     usuario.usuario = createUsuarioDto.usuario.trim();
     usuario.clave = createUsuarioDto.clave; 
-    usuario.tipo_usuario = createUsuarioDto.tipo_usuario.trim();
+    usuario.tipoUsuario = createUsuarioDto.tipoUsuario.trim();
 
     return this.usuarioRepository.save(usuario);
   }
@@ -61,7 +61,7 @@ export class UsuariosService {
 
     usuario.usuario = updateUsuarioDto.usuario?.trim() || usuario.usuario;
     usuario.clave = updateUsuarioDto.clave || usuario.clave; 
-    usuario.tipo_usuario = updateUsuarioDto.tipo_usuario?.trim() || usuario.tipo_usuario;
+    usuario.tipoUsuario = updateUsuarioDto.tipoUsuario?.trim() || usuario.tipoUsuario;
 
     return this.usuarioRepository.save(usuario);
   }

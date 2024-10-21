@@ -10,14 +10,14 @@ import {
     @PrimaryGeneratedColumn('identity')
     id: number;
   
-    @Column('varchar', { length: 30, unique: true }) // Asegúrate de que el usuario sea único
+    @Column('varchar', { length: 30, unique: true }) 
     usuario: string;
   
     @Column('varchar', { length: 100 })
     clave: string;
   
     @Column('varchar', { length: 20 })
-    tipo_usuario: string;
+    tipoUsuario: string;
   
     @DeleteDateColumn({
       type: 'timestamp',
