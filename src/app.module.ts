@@ -13,6 +13,7 @@ import { ProductosModule } from './productos/productos.module';
 import { DetallePedidoModule } from './detalle_pedido/detalle_pedido.module';
 import { MetodosPagosModule } from './metodos_pagos/metodos_pagos.module';
 import { ProductosIngredientesModule } from './productos_ingredientes/productos_ingredientes.module';
+import { UsuarioModule } from './usuarios/usuario.module';
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { ProductosIngredientesModule } from './productos_ingredientes/productos_
     ProductosModule,
     DetallePedidoModule,
     MetodosPagosModule,
-    ProductosIngredientesModule
+    ProductosIngredientesModule,
+    UsuarioModule
   ],
   controllers: [AppController],
   providers: [AppService],
