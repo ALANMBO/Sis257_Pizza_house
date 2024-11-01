@@ -29,7 +29,7 @@ export class Producto {
     tamanio?: number;
 
     @DeleteDateColumn()
-    deletedAt?: Date;
+    fecha_eliminacion?: Date;
 
     @ManyToOne(() => CategoriasProducto, (categoria) => categoria.productos)
     @JoinColumn({ name: 'idCategoria', referencedColumnName: 'id' })
