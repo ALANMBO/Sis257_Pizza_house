@@ -16,13 +16,13 @@ export class Promocion {
   descripcion: string;
 
   @Column('decimal', { precision: 5, scale: 2, nullable: false })
-  descuento_porcentaje: number;
+  descuentoPorcentaje: number;
 
   @Column('date', { nullable: false })
-  fecha_inicio: Date;
+  fechaInicio: Date;
 
   @Column('date', { nullable: false })
-  fecha_fin: Date; 
+  fechaFin: Date; 
 
   @DeleteDateColumn({
     type: 'timestamp',
