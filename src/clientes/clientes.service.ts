@@ -25,7 +25,7 @@ export class ClientesService {
     }
 
     const cliente = new Cliente();
-    cliente.razon_social = createClienteDto.razon_social.trim();
+    cliente.razonSocial = createClienteDto.razonSocial.trim();
     cliente.nit = createClienteDto.nit;
 
     return this.clientesRepository.save(cliente);

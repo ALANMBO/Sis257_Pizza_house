@@ -13,11 +13,11 @@ export class Cliente {
   id: number;
 
   @Column('varchar', { length: 15 })
-  razon_social: string;
+  razonSocial: string;
 
   @Column('varchar', { length: 15 })
   nit: number; 
-// no deberia haber fecha de eliminacion del cliente//
+
   @DeleteDateColumn({
     type: 'timestamp',
     name: 'fecha_eliminacion',

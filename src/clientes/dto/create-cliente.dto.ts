@@ -10,12 +10,12 @@ import {
 
 export class CreateClienteDto {
   @ApiProperty()
-  @IsNotEmpty({ message: 'El campo razon_social es obligatorio' })
-  @IsString({ message: 'El campo razon_social debe ser de tipo cadena' })
+  @IsNotEmpty({ message: 'El campo razonSocial es obligatorio' })
+  @IsString({ message: 'El campo razonSocial debe ser de tipo cadena' })
   @MaxLength(15, {
-    message: 'El campo razon_social no debe ser mayor a 15 caracteres',
+    message: 'El campo razonSocial no debe ser mayor a 15 caracteres',
   })
-  readonly razon_social: string;
+  readonly razonSocial: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo nit es obligatorio' })
