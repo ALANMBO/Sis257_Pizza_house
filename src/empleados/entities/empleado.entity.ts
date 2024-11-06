@@ -28,7 +28,7 @@ export class Empleado {
   salario: number;
 
   @Column('date')
-  fecha_nacimiento: Date;
+  fechaNacimiento: Date;
 
   @DeleteDateColumn({
     type: 'timestamp',

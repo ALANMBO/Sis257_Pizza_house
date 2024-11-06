@@ -4,9 +4,9 @@ import { Type } from 'class-transformer';
 
 export class CreateEmpleadoDto {
     @ApiProperty()
-    @IsNotEmpty({ message: 'El campo empleado es obligatorio' })
-    @IsString({ message: 'El campo empleado debe ser de tipo cadena' })
-    @MaxLength(20, { message: 'El campo empleado no debe ser mayor a 20 caracteres' })
+    @IsNotEmpty({ message: 'El campo nombre es obligatorio' })
+    @IsString({ message: 'El campo nombre debe ser de tipo cadena' })
+    @MaxLength(20, { message: 'El campo nombre no debe ser mayor a 20 caracteres' })
     readonly nombre: string;
 
     @ApiProperty()
@@ -21,9 +21,9 @@ export class CreateEmpleadoDto {
     readonly cargo: string;
 
     @ApiProperty()
-    @IsNotEmpty({ message: 'El campo teléfono es obligatorio' })
-    @IsNumber({}, { message: 'El campo teléfono debe ser de tipo numérico' })
-    @Min(1000000, { message: 'El campo teléfono debe tener al menos 7 dígitos' })
+    @IsNotEmpty({ message: 'El campo telefono es obligatorio' })
+    @IsNumber({}, { message: 'El campo telefono debe ser de tipo numérico' })
+    @Min(1000000, { message: 'El campo telefono debe tener al menos 7 dígitos' })
     readonly telefono: number;
 
     @ApiProperty()
@@ -33,8 +33,8 @@ export class CreateEmpleadoDto {
     readonly salario: number;
 
     @ApiProperty()
-    @IsNotEmpty({ message: 'El campo fecha de nacimiento es obligatorio' })
-    @IsDate({ message: 'El campo fecha de nacimiento debe ser una fecha válida' })
+    @IsNotEmpty({ message: 'El campo fecha de Nacimiento es obligatorio' })
+    @IsDate({ message: 'El campo fecha de Nacimiento debe ser una fecha válida' })
     @Type(() => Date) 
-    readonly fecha_nacimiento: Date;
+    readonly fechaNacimiento: Date;
 }

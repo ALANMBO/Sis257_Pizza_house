@@ -30,7 +30,7 @@ export class EmpleadosService {
     empleado.telefono = createEmpleadoDto.telefono; 
     empleado.email = createEmpleadoDto.email.trim();
     empleado.salario = createEmpleadoDto.salario;
-    empleado.fecha_nacimiento = createEmpleadoDto.fecha_nacimiento; 
+    empleado.fechaNacimiento = createEmpleadoDto.fechaNacimiento; 
 
     return this.empleadoRepository.save(empleado);
   }
@@ -66,7 +66,7 @@ export class EmpleadosService {
     empleado.telefono = updateEmpleadoDto.telefono || empleado.telefono; 
     empleado.email = updateEmpleadoDto.email?.trim() || empleado.email;
     empleado.salario = updateEmpleadoDto.salario || empleado.salario; 
-    empleado.fecha_nacimiento = updateEmpleadoDto.fecha_nacimiento || empleado.fecha_nacimiento; 
+    empleado.fechaNacimiento = updateEmpleadoDto.fechaNacimiento || empleado.fechaNacimiento; 
 
     return this.empleadoRepository.save(empleado);
   }
