@@ -1,10 +1,7 @@
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcryptjs';  
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './entities/usuario.entity';
@@ -15,7 +12,6 @@ export class UsuariosService {
     @InjectRepository(Usuario)
     private usuarioRepository: Repository<Usuario>,
   ) {}
-
   async create(createUsuarioDto: CreateUsuarioDto): Promise<Usuario> {
     const existe = await this.usuarioRepository.findOneBy({
       usuario: createUsuarioDto.usuario.trim(),
@@ -24,17 +20,22 @@ export class UsuariosService {
       throw new ConflictException('El usuario ya existe con este nombre');
     }
 
+    const salt = await bcrypt.genSalt(10);  
+    const hashedPassword = await bcrypt.hash(createUsuarioDto.clave, salt);  
+
     const usuario = new Usuario();
     usuario.usuario = createUsuarioDto.usuario.trim();
-    usuario.clave = createUsuarioDto.clave; 
+    usuario.clave = hashedPassword; 
     usuario.tipoUsuario = createUsuarioDto.tipoUsuario.trim();
 
-    return this.usuarioRepository.save(usuario);
+    return this.usuarioRepository.save(usuario);  
   }
+
 
   async findAll(): Promise<Usuario[]> {
     return this.usuarioRepository.find();
   }
+
 
   async findOne(id: number): Promise<Usuario> {
     const usuario = await this.usuarioRepository.findOneBy({ id });
@@ -43,7 +44,6 @@ export class UsuariosService {
     }
     return usuario;
   }
-
   async update(
     id: number,
     updateUsuarioDto: UpdateUsuarioDto,
@@ -60,12 +60,16 @@ export class UsuariosService {
     }
 
     usuario.usuario = updateUsuarioDto.usuario?.trim() || usuario.usuario;
-    usuario.clave = updateUsuarioDto.clave || usuario.clave; 
+
+    if (updateUsuarioDto.clave) {
+      const salt = await bcrypt.genSalt(10);
+      usuario.clave = await bcrypt.hash(updateUsuarioDto.clave, salt);
+    }
+
     usuario.tipoUsuario = updateUsuarioDto.tipoUsuario?.trim() || usuario.tipoUsuario;
 
-    return this.usuarioRepository.save(usuario);
+    return this.usuarioRepository.save(usuario);  
   }
-
   async remove(id: number) {
     const usuario = await this.findOne(id);
     return this.usuarioRepository.softRemove(usuario);
