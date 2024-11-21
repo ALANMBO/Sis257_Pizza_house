@@ -33,8 +33,8 @@ export class Usuario {
   @OneToOne(() => Empleado, (empleado) => empleado.usuario)
   empleados: Empleado;
 
-   @BeforeInsert()
-   @BeforeUpdate()
+  @BeforeInsert()
+  @BeforeUpdate()
    async hashPassword() {
     const salt = await bcrypt.genSalt();
     this.clave = await bcrypt.hash(this.clave, salt);

@@ -14,7 +14,7 @@ export class UsuariosService {
       nombreUsuario: createUsuarioDto.nombreUsuario.trim(),
     });
     if (existe) {
-      throw new ConflictException('El usuario ya existe');
+      throw new ConflictException('El usuario ya registro');
     }
 
     const usuario = new Usuario();
@@ -48,21 +48,4 @@ export class UsuariosService {
     const usuario = await this.findOne(id);
     return this.usuariosRepository.delete(usuario.id);
   }
-
-  // async validate(nombreUsuario: string, clave: string): Promise<Usuario> {
-  //   const usuarioOk = await this.usuariosRepository.findOne({
-  //     where: { nombreUsuario },
-  //     select: ['id', 'nombreUsuario', 'clave', 'email'],
-  //   });
-
-  //   if (!usuarioOk) throw new NotFoundException('Usuario inexistente');
-
-  //   if (!(await usuarioOk?.validatePassword(clave))) {
-  //     throw new UnauthorizedException('Clave incorrecta');
-  //   }
-
-  //   delete usuarioOk.clave;
-  //   return usuarioOk;
-  // }
-
 }
