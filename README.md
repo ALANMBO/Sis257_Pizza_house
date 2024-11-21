@@ -1,3 +1,94 @@
+<p>"Sis257_Pizza_House" es una pizzería innovadora que se dedica a ofrecer una experiencia única de pizza, combinando sabores tradicionales y nuevas propuestas culinarias, utilizando siempre ingredientes frescos y de alta calidad. La pizzería está comprometida con ofrecer un servicio rápido y eficiente de pedidos y entregas, brindando una experiencia gastronómica inolvidable. Además, cuenta con promociones especiales y descuentos para premiar la lealtad de sus clientes.</p>
+
+<p>El sistema web "Sis257_Pizza_House" está diseñado para optimizar la gestión interna de la pizzería, permitiendo administrar productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago y promociones activas. Los empleados pueden gestionar los pedidos de manera eficiente, mientras que los clientes pueden realizar pedidos en línea de manera sencilla y rápida.</p>
+
+<ul>
+  <li>categorias
+    <ul>
+      <li>id: Identificador único de la categoría.</li>
+      <li>nombre: Nombre de la categoría.</li>
+      <li>fecha_creacion: Fecha en la que se creó la categoría.</li>
+      <li>fecha_modificacion: Fecha de la última modificación de la categoría.</li>
+    </ul>
+  </li>
+
+  <li>clientes
+    <ul>
+      <li>id: Identificador único del cliente.</li>
+      <li>nombres: Nombres del cliente.</li>
+      <li>apellidos: Apellidos del cliente.</li>
+      <li>direccion: Dirección del cliente.</li>
+      <li>celular: Número de celular del cliente.</li>
+      <li>fecha_creacion: Fecha en la que se creó el cliente.</li>
+      <li>fecha_modificacion: Fecha de la última modificación del cliente.</li>
+    </ul>
+  </li>
+
+  <li>empleados
+    <ul>
+      <li>id: Identificador único del empleado.</li>
+      <li>nombres: Nombres del empleado.</li>
+      <li>apellidos: Apellidos del empleado.</li>
+      <li>cargo: Cargo que ocupa el empleado.</li>
+      <li>salario: Salario del empleado.</li>
+      <li>fecha_contratacion: Fecha en la que se contrató al empleado.</li>
+      <li>fecha_creacion: Fecha en la que se creó el registro del empleado.</li>
+      <li>fecha_modificacion: Fecha de la última modificación del registro del empleado.</li>
+      <li>id_usuario: Identificador del usuario relacionado con el empleado.</li>
+    </ul>
+  </li>
+
+  <li>productos
+    <ul>
+      <li>id: Identificador único del producto.</li>
+      <li>nombre: Nombre del producto.</li>
+      <li>descripcion: Descripción del producto.</li>
+      <li>precio_unitario: Precio unitario del producto.</li>
+      <li>stock: Cantidad disponible del producto.</li>
+      <li>fecha_creacion: Fecha en la que se creó el producto.</li>
+      <li>fecha_modificacion: Fecha de la última modificación del producto.</li>
+      <li>idCategoria: Identificador de la categoría a la que pertenece el producto.</li>
+    </ul>
+  </li>
+
+  <li>usuarios
+    <ul>
+      <li>id: Identificador único del usuario.</li>
+      <li>nombre_usuario: Nombre de usuario.</li>
+      <li>clave: Contraseña del usuario.</li>
+      <li>fecha_creacion: Fecha en la que se creó el usuario.</li>
+      <li>fecha_modificacion: Fecha de la última modificación del usuario.</li>
+    </ul>
+  </li>
+
+  <li>ventadetalles
+    <ul>
+      <li>id: Identificador único del detalle de la venta.</li>
+      <li>cantidad: Cantidad de productos vendidos.</li>
+      <li>subtotal: Subtotal correspondiente a los productos.</li>
+      <li>id_venta: Identificador de la venta asociada.</li>
+      <li>id_producto: Identificador del producto vendido.</li>
+    </ul>
+  </li>
+
+  <li>ventas
+    <ul>
+      <li>id: Identificador único de la venta.</li>
+      <li>cantidad: Cantidad total de productos en la venta.</li>
+      <li>precio_unitario: Precio unitario de los productos vendidos.</li>
+      <li>total_venta: Total de la venta.</li>
+      <li>fecha_creacion: Fecha en la que se realizó la venta.</li>
+      <li>idCliente: Identificador del cliente asociado a la venta.</li>
+      <li>id_producto: Identificador del producto asociado a la venta.</li>
+      <li>id_Empleado: Identificador del empleado que realizó la venta.</li>
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
