@@ -12,15 +12,15 @@ async function bootstrap() {
   app.enableCors();
 
   const config = new DocumentBuilder()
-    .setTitle('API Rest SIS257_Pizza_House')
-    .setDescription('API Rest del Proyecto de SIS257_Pizza_House')
-    .setVersion('1.0')
-    .addTag('categorias_productos')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('apiSIS257_Pizza_House', app, document);
-
+  .setTitle('API Rest SIS257_Pizza_House')
+  .setDescription('API Rest del Proyecto de SIS257_Pizza_House')
+  .setVersion('1.0')
+  .addTag('clientes')
+  .build();
+const document = SwaggerModule.createDocument(app, config);
+SwaggerModule.setup('apiSIS257_Pizza_House', app, document);
+  
   await app.listen(process.env.PORT);
-  console.log(`App corriendon ${await app.getUrl()}/apiSIS257_Pizza_House`);
+  console.log(`App corriendo ${await app.getUrl()}/apiSIS257_Pizza_House`);
 }
 bootstrap();

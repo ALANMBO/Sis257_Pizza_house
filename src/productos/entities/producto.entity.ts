@@ -1,44 +1,45 @@
-import { CategoriasProducto } from 'src/categorias_productos/entities/categorias_producto.entity';
-import { DetallePedido } from 'src/detalle_pedido/entities/detalle_pedido.entity';
-import { ProductosIngrediente } from 'src/productos_ingredientes/entities/productos_ingrediente.entity'; // Importar la tabla intermedia
-import {
-    Column,
-    Entity,
-    JoinColumn,
-    ManyToOne,
-    OneToMany,
-    PrimaryGeneratedColumn,
-    DeleteDateColumn
-} from 'typeorm';
+import { Categoria } from "src/categorias/entities/categoria.entity";
+import { Ventadetalle } from "src/ventas-detalles/entities/ventas-detalle.entity";
+import { Venta } from "src/ventas/entities/venta.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('productos')
 export class Producto {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn() 
     id: number;
 
-    @Column('varchar', { length: 70 })
+    @Column('varchar', { length: 50, nullable: false })
     nombre: string;
 
-    @Column('decimal')
-    precio: number;
+    @Column('varchar', { length: 200, nullable: false })
+    descripcion: string;
 
-    @Column({ nullable: true })
-    disponibilidad?: number;
+    @Column({name:'precio_unitario'})
+    precioUnitario:number;
 
-    @Column({ nullable: true })
-    tamanio?: number;
+    @Column()
+    stock: number;
 
-    @DeleteDateColumn()
-    fecha_eliminacion?: Date;
+    @CreateDateColumn({ name: 'fecha_creacion' })
+    fechaCreacion: Date;
 
-    @ManyToOne(() => CategoriasProducto, (categoria) => categoria.productos)
-    @JoinColumn({ name: 'idCategoria', referencedColumnName: 'id' })
-    idCategoria: CategoriasProducto;
-
-    @OneToMany(() => DetallePedido, (detalle) => detalle.producto)
-    detalles: DetallePedido[];
+    @UpdateDateColumn({ name: 'fecha_modificacion' })
+    fechaModificacion;
 
 
-    @OneToMany(() => ProductosIngrediente, (productosIngrediente) => productosIngrediente.producto)
-    productosIngredientes: ProductosIngrediente[]; 
+    //id:categoria
+    //varios productos pertenecen a Una categoría 
+    @ManyToOne(()=>Categoria,categoria=>categoria.productos)
+    @JoinColumn({name:'idCategoria',referencedColumnName:'id'})
+    categoria: Categoria
+    //un producto puede tener varios ventas de detalle
+    @OneToMany(()=>Ventadetalle,ventadetalle=>ventadetalle.producto)
+    ventadetalles:Ventadetalle[];
+
+    @OneToMany(()=>Venta,venta=>venta.producto)
+    ventas:Venta[];
+    
+
 }
+
+

@@ -1,78 +1,61 @@
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { CreateEmpleadoDto } from './dto/create-empleado.dto';
+import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { CreateEmpleadoDto } from './dto/create-empleado.dto'; 
-import { UpdateEmpleadoDto } from './dto/update-empleado.dto'; 
 import { Empleado } from './entities/empleado.entity';
+import { Repository } from 'typeorm';
+import { Usuario } from 'src/usuarios/entities/usuario.entity';
 
 @Injectable()
 export class EmpleadosService {
-  constructor(
-    @InjectRepository(Empleado)
-    private empleadoRepository: Repository<Empleado>,
-  ) {}
+  constructor
+    (@InjectRepository(Empleado) private empleadosRepository: Repository<Empleado>,
+    ) { }
 
   async create(createEmpleadoDto: CreateEmpleadoDto): Promise<Empleado> {
-    const existe = await this.empleadoRepository.findOneBy({
-      email: createEmpleadoDto.email.trim(),
-    });
-    if (existe) {
-      throw new ConflictException('El empleado ya existe con este email');
-    }
-
-    const empleado = new Empleado();
-    empleado.nombre = createEmpleadoDto.nombre.trim();
-    empleado.cargo = createEmpleadoDto.cargo.trim();
-    empleado.telefono = createEmpleadoDto.telefono; 
-    empleado.email = createEmpleadoDto.email.trim();
-    empleado.salario = createEmpleadoDto.salario;
-    empleado.fechaNacimiento = createEmpleadoDto.fechaNacimiento; 
-
-    return this.empleadoRepository.save(empleado);
+    const  empleado = this.empleadosRepository.create({
+      nombres: createEmpleadoDto.nombres.trim(),
+      apellidos: createEmpleadoDto.apellidos.trim(),
+      cargo: createEmpleadoDto.cargo.trim(),
+      salario: createEmpleadoDto.salario,
+      fechaContratacion: createEmpleadoDto.fechaContratacion,
+      usuario: { id: createEmpleadoDto.idUsuario }
+    })
+    return this.empleadosRepository.save(empleado)
   }
 
   async findAll(): Promise<Empleado[]> {
-    return this.empleadoRepository.find();
+    return this.empleadosRepository.find({ relations: ['usuario'] });
   }
 
   async findOne(id: number): Promise<Empleado> {
-    const empleado = await this.empleadoRepository.findOneBy({ id });
-    if (!empleado) {
-      throw new NotFoundException('El empleado no existe');
+    const existeEmpleado = await this.empleadosRepository.findOne({
+      where: { id },
+      relations: ['usuario']
+
+    })
+    if (!existeEmpleado) {
+      throw new NotFoundException(`EL empleado con el id ${id} no existe`)
     }
-    return empleado;
+    return existeEmpleado;
   }
 
-  async update(
-    id: number,
-    updateEmpleadoDto: UpdateEmpleadoDto,
-  ): Promise<Empleado> {
+  async update(id: number, updateEmpleadoDto: UpdateEmpleadoDto): Promise<Empleado> {
     const empleado = await this.findOne(id);
-
-    if (updateEmpleadoDto.email && updateEmpleadoDto.email !== empleado.email) {
-      const existe = await this.empleadoRepository.findOneBy({
-        email: updateEmpleadoDto.email.trim(),
-      });
-      if (existe && existe.id !== id) {
-        throw new ConflictException('Ya existe un empleado con este email');
-      }
+    if (!empleado) {
+      throw new NotFoundException(`El empleado con el id ${id} no existe`);
     }
-    empleado.nombre = updateEmpleadoDto.nombre?.trim() || empleado.nombre;
-    empleado.cargo = updateEmpleadoDto.cargo?.trim() || empleado.cargo;
-    empleado.telefono = updateEmpleadoDto.telefono || empleado.telefono; 
-    empleado.email = updateEmpleadoDto.email?.trim() || empleado.email;
-    empleado.salario = updateEmpleadoDto.salario || empleado.salario; 
-    empleado.fechaNacimiento = updateEmpleadoDto.fechaNacimiento || empleado.fechaNacimiento; 
 
-    return this.empleadoRepository.save(empleado);
+    const actualizarEmpleado = Object.assign(empleado, updateEmpleadoDto);
+    actualizarEmpleado.usuario = { id: updateEmpleadoDto.idUsuario } as Usuario;
+    return this.empleadosRepository.save(actualizarEmpleado);
   }
 
   async remove(id: number) {
     const empleado = await this.findOne(id);
-    return this.empleadoRepository.softRemove(empleado);
+    if (!empleado) {
+      throw new NotFoundException(`El empleado con el id ${id} no existe`);
+    }
+    return this.empleadosRepository.delete(empleado.id);
   }
 }

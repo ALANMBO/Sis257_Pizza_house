@@ -1,42 +1,41 @@
-import { Pedido } from 'src/pedidos/entities/pedido.entity';
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  DeleteDateColumn,
-  OneToMany,
-} from 'typeorm';
+import { Usuario } from "src/usuarios/entities/usuario.entity";
+import { Venta } from "src/ventas/entities/venta.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('empleados')
 export class Empleado {
-  @PrimaryGeneratedColumn('identity')
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column('varchar', { length: 20 })
-  nombre: string;
+    @Column('varchar', { length: 50, nullable: false })
+    nombres: string;
 
-  @Column('varchar', { length: 50 })
-  email: string;
 
-  @Column('varchar', { length: 30 })
-  cargo: string;
+    @Column('varchar', { length: 50, nullable: false })
+    apellidos: string;
 
-  @Column('numeric')
-  telefono: number;
+    @Column('varchar', { length: 30, nullable: false })
+    cargo: string;
 
-  @Column('numeric')
-  salario: number;
+    @Column()
+    salario: number;
 
-  @Column('date')
-  fechaNacimiento: Date;
+    @Column({type:'date',  name: 'fecha_contratacion' })
+    fechaContratacion: Date;
 
-  @DeleteDateColumn({
-    type: 'timestamp',
-    name: 'fecha_eliminacion',
-    select: false,
-  })
-  deletedAt?: Date;
+    @CreateDateColumn({ name: 'fecha_creacion' })
+    fechaCreacion: Date;
 
-  @OneToMany(() => Pedido, (pedido) => pedido.empleado)
-  pedidos: Pedido[]; 
+
+    @UpdateDateColumn({ name: 'fecha_modificacion' })
+    fechaModificacion: Date;
+    //un empelado puede tener un usaurio
+    @OneToOne(() => Usuario, usuario => usuario.empleados)
+    @JoinColumn({ name: 'id_usuario', referencedColumnName: 'id' })
+    usuario: Usuario;
+
+    @OneToMany(() => Venta, (venta) => venta.empleado)
+    ventas: Venta[];
+
+
 }

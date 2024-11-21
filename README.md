@@ -1,110 +1,3 @@
-<p>"Sis257_Pizza_House" es una pizzería innovadora que se especializa en ofrecer una amplia variedad de pizzas deliciosas, preparadas con ingredientes frescos y de alta calidad. El objetivo principal de este negocio es ofrecer a los clientes una experiencia gastronómica única, combinando sabores tradicionales con nuevas propuestas culinarias, además de brindar un servicio de pedidos y entregas rápido y eficiente. La pizzería también ofrece promociones exclusivas y descuentos para fidelizar a sus clientes.</p>
-
-<p>El sistema web "Sis257_Pizza_House" permitirá gestionar de manera eficiente las operaciones internas, como la administración de productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago, y las promociones vigentes. Los empleados podrán gestionar pedidos, y los clientes podrán hacer sus pedidos en línea de forma fácil y rápida.</p>
-
-
-<ul>
-  <li>clientes
-    <ul>
-      <li>id: Identificador único del cliente.</li>
-      <li>razon_social: Nombre completo o razón social del cliente.</li>
-      <li>nit: Número de Identificación Tributaria.</li>
-    </ul>
-  </li>
-
-  <li>empleados
-    <ul>
-      <li>id: Identificador único del empleado.</li>
-      <li>nombre: Nombre completo del empleado.</li>
-      <li>cargo: Cargo que ocupa en la pizzería (por ejemplo, repartidor, cajero).</li>
-      <li>telefono: Número de teléfono del empleado.</li>
-      <li>email: Correo electrónico del empleado.</li>
-      <li>salario: Salario del empleado.</li>
-      <li>fecha_nacimiento: Fecha de nacimiento del empleado.</li>
-    </ul>
-  </li>
-
-  <li>productos (Pizzas)
-    <ul>
-      <li>id: Identificador único del producto.</li>
-      <li>nombre: Nombre de la pizza o producto.</li>
-      <li>precio: Precio del producto.</li>
-      <li>id_categoria: Categoría a la que pertenece (por ejemplo, pizza, bebida).</li>
-      <li>disponibilidad: Indica si el producto está disponible.</li>
-      <li>tamanio: Tamaño del producto (mediano, grande, etc.).</li>
-    </ul>
-  </li>
-
-  <li>categorias_productos
-    <ul>
-      <li>id: Identificador único de la categoría.</li>
-      <li>nombre: Nombre de la categoría (por ejemplo, Pizzas, Bebidas, Complementos).</li>
-    </ul>
-  </li>
-
-  <li>pedidos
-    <ul>
-      <li>id: Identificador único del pedido.</li>
-      <li>id_cliente: Cliente que hizo el pedido.</li>
-      <li>id_empleado: Empleado que atendió o entregó el pedido.</li>
-      <li>fecha: Fecha en que se realizó el pedido.</li>
-      <li>estado: Estado del pedido (pendiente, entregado, cancelado).</li>
-      <li>total: Total a pagar del pedido.</li>
-      <li>id_promocion: Promoción aplicada al pedido, si existe.</li>
-      <li>direccion_entrega: Dirección de entrega del pedido.</li>
-    </ul>
-  </li>
-
-  <li>detalles_pedidos
-    <ul>
-      <li>id: Identificador único del detalle.</li>
-      <li>id_pedido: Pedido al que pertenece el detalle.</li>
-      <li>id_producto: Producto seleccionado en el pedido.</li>
-      <li>cantidad: Cantidad del producto pedido.</li>
-      <li>precio_unitario: Precio por unidad del producto.</li>
-      <li>descuento: Descuento aplicado, si corresponde.</li>
-    </ul>
-  </li>
-
-  <li>ingredientes
-    <ul>
-      <li>id: Identificador único del ingrediente.</li>
-      <li>nombre: Nombre del ingrediente (queso, pepperoni, etc.).</li>
-    </ul>
-  </li>
-
-  <li>productos_ingredientes (Relación N a M)
-    <ul>
-      <li>id: Identificador único de la relación.</li>
-      <li>id_producto: Producto al que pertenece el ingrediente.</li>
-      <li>id_ingrediente: Ingrediente relacionado con el producto.</li>
-    </ul>
-  </li>
-
-  <li>métodos_pagos
-    <ul>
-      <li>id_metodo_pago: Identificador único del método de pago.</li>
-      <li>id_pedido: Pedido asociado al pago.</li>
-      <li>tipo: Tipo de pago (tarjeta, efectivo, transferencia).</li>
-      <li>monto: Monto pagado.</li>
-      <li>estado: Estado del pago (pagado, pendiente, rechazado).</li>
-    </ul>
-  </li>
-
-  <li>promociones
-    <ul>
-      <li>id: Identificador único de la promoción.</li>
-      <li>descripcion: Descripción de la promoción.</li>
-      <li>descuento_porcentaje: Porcentaje de descuento aplicado.</li>
-      <li>fecha_inicio: Fecha de inicio de la promoción.</li>
-      <li>fecha_fin: Fecha de fin de la promoción.</li>
-    </ul>
-  </li>
-</ul>
-
-
-
-
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
@@ -165,6 +58,19 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Deployment
+
+When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+
+If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+
+```bash
+$ npm install -g mau
+$ mau deploy
+```
+
+With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
@@ -172,6 +78,7 @@ Check out a few resources that may come in handy when working with NestJS:
 - Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
 - For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
 - To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
+- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
 - Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
 - Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
 - To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).

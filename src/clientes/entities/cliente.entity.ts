@@ -1,30 +1,29 @@
-import { Pedido } from 'src/pedidos/entities/pedido.entity';
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  DeleteDateColumn,
-  OneToMany,
-} from 'typeorm';
+import { Venta } from "src/ventas/entities/venta.entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity('clientes') 
+@Entity('clientes')
 export class Cliente {
-  @PrimaryGeneratedColumn('identity')
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column('varchar', { length: 15 })
-  razonSocial: string;
+    @Column('varchar', { length: 50, nullable: false }) 
+    nombres: string;
 
-  @Column('varchar', { length: 15 })
-  nit: number; 
+    @Column('varchar', { length: 50, nullable: false })
+    apellidos: string;
 
-  @DeleteDateColumn({
-    type: 'timestamp',
-    name: 'fecha_eliminacion',
-    select: false,
-  })
-  deletedAt?: Date;
+    @Column('varchar', { length: 50, nullable: false })
+    direccion: string;
 
-  @OneToMany(() => Pedido, (pedido) => pedido.cliente)
-  pedidos: Pedido[]; 
+    @Column('varchar', { length: 15, nullable: false })
+    celular: string;
+
+    @CreateDateColumn({ name: 'fecha_creacion' })
+    fechaCreacion: Date;
+
+    @UpdateDateColumn({ name: 'fecha_modificacion' })
+    fechaModificacion: Date;
+
+    @OneToMany(() => Venta, venta => venta.cliente)
+    ventas: Venta[];
 }

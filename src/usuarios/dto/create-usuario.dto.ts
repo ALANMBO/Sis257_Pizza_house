@@ -1,23 +1,17 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreateUsuarioDto {
     @ApiProperty()
-    @IsNotEmpty({ message: 'El campo usuario es obligatorio' })
-    @IsString({ message: 'El campo usuario debe ser de tipo cadena' })
-    @MaxLength(30, { message: 'El campo usuario no debe ser mayor a 30 caracteres' })
-    readonly usuario: string;
+    @IsNotEmpty({ message: 'El campo usario no debe ser vacío' })
+    @IsString({ message: 'El campo usario debe ser de tipo cadena' })
+    @MaxLength(50, { message: 'El campo usario no debe ser mayor a 12 caracteres' })
+    @MinLength(2, { message: 'El campo usario no debe ser menor a 4 caracteres' })
+    readonly nombreUsuario: string;
 
-    @ApiProperty()
-    @IsNotEmpty({ message: 'El campo clave es obligatorio' })
-    @IsString({ message: 'El campo clave debe ser de tipo cadena' })
-    @MaxLength(100, { message: 'El campo clave no debe ser mayor a 100 caracteres' })
-    readonly clave: string;
 
-    @ApiProperty()
-    @IsNotEmpty({ message: 'El campo tipo de usuario es obligatorio' })
-    @IsString({ message: 'El campo tipo de usuario debe ser de tipo cadena' })
-    @MaxLength(20, { message: 'El campo tipo de usuario no debe ser mayor a 20 caracteres' })
-    readonly tipoUsuario: string;
+
+
+
+
 }
-

@@ -1,60 +1,48 @@
-import {
-  ConflictException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Cliente } from './entities/cliente.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ClientesService {
   constructor(
-    @InjectRepository(Cliente)
-    private clientesRepository: Repository<Cliente>,
-  ) {}
+    @InjectRepository(Cliente) private clientesRepository: Repository<Cliente>,) { }
 
   async create(createClienteDto: CreateClienteDto): Promise<Cliente> {
-    const existe = await this.clientesRepository.findOneBy({
-      nit: createClienteDto.nit,
+    const cliente = this.clientesRepository.create({
+      nombres: createClienteDto.nombres.trim(),
+      apellidos: createClienteDto.apellidos.trim(),
+      direccion: createClienteDto.direccion.trim(),
+      celular: createClienteDto.celular.trim(), 
     });
-    if (existe) {
-      throw new ConflictException('El cliente con este NIT ya existe');
-    }
-
-    const cliente = new Cliente();
-    cliente.razonSocial = createClienteDto.razonSocial.trim();
-    cliente.nit = createClienteDto.nit;
-
     return this.clientesRepository.save(cliente);
   }
 
   async findAll(): Promise<Cliente[]> {
-    return this.clientesRepository.find();
+    return await this.clientesRepository.find();
   }
 
   async findOne(id: number): Promise<Cliente> {
-    const cliente = await this.clientesRepository.findOneBy({ id });
-    if (!cliente) {
-      throw new NotFoundException('El cliente no existe');
+    const existe = await this.clientesRepository.findOneBy({ id });
+    if (!existe) {
+      throw new NotFoundException(`El cliente con el id ${id} no existe`);
     }
-    return cliente;
+    return existe;
   }
 
-  async update(
-    id: number,
-    updateClienteDto: UpdateClienteDto,
-  ): Promise<Cliente> {
+  async update(id: number, updateClienteDto: UpdateClienteDto): Promise<Cliente> {
     const cliente = await this.findOne(id);
-
-    const clienteUpdate = Object.assign(cliente, updateClienteDto);
-    return this.clientesRepository.save(clienteUpdate);
+    const actualizaCliente = Object.assign(cliente, {
+      ...updateClienteDto,
+      celular: updateClienteDto.celular?.trim(), 
+    });
+    return this.clientesRepository.save(actualizaCliente);
   }
 
   async remove(id: number) {
     const cliente = await this.findOne(id);
-    await this.clientesRepository.softRemove(cliente);
+    return this.clientesRepository.delete(cliente.id);
   }
 }

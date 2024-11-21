@@ -5,32 +5,35 @@ import {
   IsNumber,
   IsString,
   MaxLength,
+  MinLength,
 } from 'class-validator';
 
-export class CreateProductosDto {
+export class CreateProductoDto {
   @ApiProperty()
-  @IsNotEmpty({ message: 'El campo nombre es obligatorio' })
+  @IsNotEmpty({ message: 'El campo nombre no debe ser vacío' })
   @IsString({ message: 'El campo nombre debe ser de tipo cadena' })
-  @MaxLength(50, { message: 'El campo nombre no debe ser mayor a 50 caracteres' })
+  @MaxLength(50, { message: 'El campo nombre no debe ser menor a 50 caracteres'})
+  @MinLength(2, { message: 'El campo nombre no debe ser mayor a 2 caracteres' })
   readonly nombre: string;
 
   @ApiProperty()
-  @IsDefined({ message: 'El campo precio debe estar definido' })
-  @IsNumber({}, { message: 'El campo precio debe ser tipo numérico' })
-  readonly precio: number;
+  @IsNotEmpty({ message: 'el campo descripcion no debe ser vacio' })
+  @IsString({ message: 'El campo descricion debe ser de tipo cadena' })
+  @MaxLength(200, { message: 'el campo descripcion debe ser menor a 200 caracteres' })
+  @MinLength(2, {message: 'El campo descripcion debe ser mayor a 10 caracteres'  })
+  readonly descripcion: string;
+
+  @ApiProperty()
+  @IsNumber( {},{ message: 'El campo precio unitario debe ser de tipo numérico' } )
+  readonly precioUnitario: number;
+
+  @ApiProperty()
+  @IsNumber({}, { message: 'El campo stock debe ser de tipo numérico' })
+  readonly stock: number;
 
   @ApiProperty()
   @IsDefined({ message: 'El campo idCategoria debe estar definido' })
-  @IsNumber({}, { message: 'El campo idCategoria debe ser tipo numérico' })
+  @IsNumber({}, { message: 'El campo idCategoria debe ser de tipo numérico' })
   readonly idCategoria: number;
-
-  @ApiProperty()
-  @IsDefined({ message: 'El campo disponibilidad debe estar definido' })
-  @IsNumber({}, { message: 'El campo disponibilidad debe ser tipo numérico' })
-  readonly disponibilidad: number;  
-
-  @ApiProperty()
-  @IsDefined({ message: 'El campo tamanio debe estar definido' })
-  @IsNumber({}, { message: 'El campo tamanio debe ser tipo numérico' })
-  readonly tamanio: number;  
 }
+
