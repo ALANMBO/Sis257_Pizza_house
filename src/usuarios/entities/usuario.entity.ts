@@ -29,7 +29,7 @@ export class Usuario {
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
   
-  //un usuario puede pertenecer a un solo empleado
+  //cuando se crea un usuario solo le pertenece a un trabajador
   @OneToOne(() => Empleado, (empleado) => empleado.usuario)
   empleados: Empleado;
 
