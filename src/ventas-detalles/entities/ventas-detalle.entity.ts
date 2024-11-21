@@ -10,17 +10,12 @@ export class Ventadetalle {
     cantidad:string;
     @Column('varchar',{length:50,nullable:false})
     subtotal:string;
-    //idVenta
-    //varios ventaDetalle pueden tener una venta (M a 1) 
+    
     @ManyToOne(()=>Venta,venta=>venta.ventadetalles)
     @JoinColumn({ name: 'id_venta', referencedColumnName: 'id' })
-    venta:Venta;
+    venta:Venta; // de muchos a unoo puede tener varias ventas y llamar al idVenta
     
-
-
-    //idProducto
-    //varios detalleventa puede estar a un producto
     @ManyToOne(()=>Producto,producto=>producto.ventadetalles)
     @JoinColumn({name:'id_producto',referencedColumnName:'id'})
-    producto:Producto;
+    producto:Producto; //un pproducto tendra varios detalleVenta, y llamar al IdProducto
 }
