@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { UsuariosModule } from './usuarios/usuarios.module';
 import { ClientesModule } from './clientes/clientes.module';
 import { EmpleadosModule } from './empleados/empleados.module';
 import { ProductosModule } from './productos/productos.module';
@@ -25,7 +24,6 @@ import { VentasDetallesModule } from './ventas-detalles/ventas-detalles.module';
     synchronize: true,
     autoLoadEntities: true,
   }),
-  UsuariosModule,
   ClientesModule,
   EmpleadosModule,
   ProductosModule,

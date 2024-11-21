@@ -1,4 +1,3 @@
-import { Usuario } from "src/usuarios/entities/usuario.entity";
 import { Venta } from "src/ventas/entities/venta.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -29,10 +28,6 @@ export class Empleado {
 
     @UpdateDateColumn({ name: 'fecha_modificacion' })
     fechaModificacion: Date;
-    //un empelado puede tener un usaurio
-    @OneToOne(() => Usuario, usuario => usuario.empleados)
-    @JoinColumn({ name: 'id_usuario', referencedColumnName: 'id' })
-    usuario: Usuario;
 
     @OneToMany(() => Venta, (venta) => venta.empleado)
     ventas: Venta[];
