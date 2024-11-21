@@ -1,106 +1,90 @@
-<p>"Sis257_Pizza_House" es una pizzería innovadora que se especializa en ofrecer una amplia variedad de pizzas deliciosas, preparadas con ingredientes frescos y de alta calidad. El objetivo principal de este negocio es ofrecer a los clientes una experiencia gastronómica única, combinando sabores tradicionales con nuevas propuestas culinarias, además de brindar un servicio de pedidos y entregas rápido y eficiente. La pizzería también ofrece promociones exclusivas y descuentos para fidelizar a sus clientes.</p>
+<p>"Sis257_Pizza_House" es una pizzería innovadora que se dedica a ofrecer una experiencia única de pizza, combinando sabores tradicionales y nuevas propuestas culinarias, utilizando siempre ingredientes frescos y de alta calidad. La pizzería está comprometida con ofrecer un servicio rápido y eficiente de pedidos y entregas, brindando una experiencia gastronómica inolvidable. Además, cuenta con promociones especiales y descuentos para premiar la lealtad de sus clientes.</p>
 
-<p>El sistema web "Sis257_Pizza_House" permitirá gestionar de manera eficiente las operaciones internas, como la administración de productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago, y las promociones vigentes. Los empleados podrán gestionar pedidos, y los clientes podrán hacer sus pedidos en línea de forma fácil y rápida.</p>
-
+<p>El sistema web "Sis257_Pizza_House" está diseñado para optimizar la gestión interna de la pizzería, permitiendo administrar productos (pizzas y otros), ingredientes, pedidos de clientes, métodos de pago y promociones activas. Los empleados pueden gestionar los pedidos de manera eficiente, mientras que los clientes pueden realizar pedidos en línea de manera sencilla y rápida.</p>
 
 <ul>
+  <li>categorias
+    <ul>
+      <li>id: Identificador único de la categoría.</li>
+      <li>nombre: Nombre de la categoría.</li>
+      <li>fecha_creacion: Fecha en la que se creó la categoría.</li>
+      <li>fecha_modificacion: Fecha de la última modificación de la categoría.</li>
+    </ul>
+  </li>
+
   <li>clientes
     <ul>
       <li>id: Identificador único del cliente.</li>
-      <li>razon_social: Nombre completo o razón social del cliente.</li>
-      <li>nit: Número de Identificación Tributaria.</li>
+      <li>nombres: Nombres del cliente.</li>
+      <li>apellidos: Apellidos del cliente.</li>
+      <li>direccion: Dirección del cliente.</li>
+      <li>celular: Número de celular del cliente.</li>
+      <li>fecha_creacion: Fecha en la que se creó el cliente.</li>
+      <li>fecha_modificacion: Fecha de la última modificación del cliente.</li>
     </ul>
   </li>
 
   <li>empleados
     <ul>
       <li>id: Identificador único del empleado.</li>
-      <li>nombre: Nombre completo del empleado.</li>
-      <li>cargo: Cargo que ocupa en la pizzería (por ejemplo, repartidor, cajero).</li>
-      <li>telefono: Número de teléfono del empleado.</li>
-      <li>email: Correo electrónico del empleado.</li>
+      <li>nombres: Nombres del empleado.</li>
+      <li>apellidos: Apellidos del empleado.</li>
+      <li>cargo: Cargo que ocupa el empleado.</li>
       <li>salario: Salario del empleado.</li>
-      <li>fecha_nacimiento: Fecha de nacimiento del empleado.</li>
+      <li>fecha_contratacion: Fecha en la que se contrató al empleado.</li>
+      <li>fecha_creacion: Fecha en la que se creó el registro del empleado.</li>
+      <li>fecha_modificacion: Fecha de la última modificación del registro del empleado.</li>
+      <li>id_usuario: Identificador del usuario relacionado con el empleado.</li>
     </ul>
   </li>
 
-  <li>productos (Pizzas)
+  <li>productos
     <ul>
       <li>id: Identificador único del producto.</li>
-      <li>nombre: Nombre de la pizza o producto.</li>
-      <li>precio: Precio del producto.</li>
-      <li>id_categoria: Categoría a la que pertenece (por ejemplo, pizza, bebida).</li>
-      <li>disponibilidad: Indica si el producto está disponible.</li>
-      <li>tamanio: Tamaño del producto (mediano, grande, etc.).</li>
+      <li>nombre: Nombre del producto.</li>
+      <li>descripcion: Descripción del producto.</li>
+      <li>precio_unitario: Precio unitario del producto.</li>
+      <li>stock: Cantidad disponible del producto.</li>
+      <li>fecha_creacion: Fecha en la que se creó el producto.</li>
+      <li>fecha_modificacion: Fecha de la última modificación del producto.</li>
+      <li>idCategoria: Identificador de la categoría a la que pertenece el producto.</li>
     </ul>
   </li>
 
-  <li>categorias_productos
+  <li>usuarios
     <ul>
-      <li>id: Identificador único de la categoría.</li>
-      <li>nombre: Nombre de la categoría (por ejemplo, Pizzas, Bebidas, Complementos).</li>
+      <li>id: Identificador único del usuario.</li>
+      <li>nombre_usuario: Nombre de usuario.</li>
+      <li>clave: Contraseña del usuario.</li>
+      <li>fecha_creacion: Fecha en la que se creó el usuario.</li>
+      <li>fecha_modificacion: Fecha de la última modificación del usuario.</li>
     </ul>
   </li>
 
-  <li>pedidos
+  <li>ventadetalles
     <ul>
-      <li>id: Identificador único del pedido.</li>
-      <li>id_cliente: Cliente que hizo el pedido.</li>
-      <li>id_empleado: Empleado que atendió o entregó el pedido.</li>
-      <li>fecha: Fecha en que se realizó el pedido.</li>
-      <li>estado: Estado del pedido (pendiente, entregado, cancelado).</li>
-      <li>total: Total a pagar del pedido.</li>
-      <li>id_promocion: Promoción aplicada al pedido, si existe.</li>
-      <li>direccion_entrega: Dirección de entrega del pedido.</li>
+      <li>id: Identificador único del detalle de la venta.</li>
+      <li>cantidad: Cantidad de productos vendidos.</li>
+      <li>subtotal: Subtotal correspondiente a los productos.</li>
+      <li>id_venta: Identificador de la venta asociada.</li>
+      <li>id_producto: Identificador del producto vendido.</li>
     </ul>
   </li>
 
-  <li>detalles_pedidos
+  <li>ventas
     <ul>
-      <li>id: Identificador único del detalle.</li>
-      <li>id_pedido: Pedido al que pertenece el detalle.</li>
-      <li>id_producto: Producto seleccionado en el pedido.</li>
-      <li>cantidad: Cantidad del producto pedido.</li>
-      <li>precio_unitario: Precio por unidad del producto.</li>
-      <li>descuento: Descuento aplicado, si corresponde.</li>
-    </ul>
-  </li>
-
-  <li>ingredientes
-    <ul>
-      <li>id: Identificador único del ingrediente.</li>
-      <li>nombre: Nombre del ingrediente (queso, pepperoni, etc.).</li>
-    </ul>
-  </li>
-
-  <li>productos_ingredientes (Relación N a M)
-    <ul>
-      <li>id: Identificador único de la relación.</li>
-      <li>id_producto: Producto al que pertenece el ingrediente.</li>
-      <li>id_ingrediente: Ingrediente relacionado con el producto.</li>
-    </ul>
-  </li>
-
-  <li>métodos_pagos
-    <ul>
-      <li>id_metodo_pago: Identificador único del método de pago.</li>
-      <li>id_pedido: Pedido asociado al pago.</li>
-      <li>tipo: Tipo de pago (tarjeta, efectivo, transferencia).</li>
-      <li>monto: Monto pagado.</li>
-      <li>estado: Estado del pago (pagado, pendiente, rechazado).</li>
-    </ul>
-  </li>
-
-  <li>promociones
-    <ul>
-      <li>id: Identificador único de la promoción.</li>
-      <li>descripcion: Descripción de la promoción.</li>
-      <li>descuento_porcentaje: Porcentaje de descuento aplicado.</li>
-      <li>fecha_inicio: Fecha de inicio de la promoción.</li>
-      <li>fecha_fin: Fecha de fin de la promoción.</li>
+      <li>id: Identificador único de la venta.</li>
+      <li>cantidad: Cantidad total de productos en la venta.</li>
+      <li>precio_unitario: Precio unitario de los productos vendidos.</li>
+      <li>total_venta: Total de la venta.</li>
+      <li>fecha_creacion: Fecha en la que se realizó la venta.</li>
+      <li>idCliente: Identificador del cliente asociado a la venta.</li>
+      <li>id_producto: Identificador del producto asociado a la venta.</li>
+      <li>id_Empleado: Identificador del empleado que realizó la venta.</li>
     </ul>
   </li>
 </ul>
+
 
 
 
