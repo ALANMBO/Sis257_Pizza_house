@@ -15,10 +15,7 @@ export class Categoria {
     @UpdateDateColumn({ name: 'fecha_modificacion' }) 
     fechaModificacion: Date;
 
-
-    
-    //Una categoría puede tener varios productos
     @OneToMany(()=>Producto,producto=>producto.categoria)
-    productos:Producto[];
+    productos:Producto[]; // productos puede tener una categoria
 
 }
