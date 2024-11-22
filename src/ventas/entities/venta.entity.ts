@@ -32,7 +32,7 @@ export class Venta {
   
   @ManyToOne(() => Cliente, (cliente) => cliente.ventas)
   @JoinColumn({ name: 'idCliente', referencedColumnName: 'id' })
-  cliente: Cliente; // un cliente pude realizar muchas ventas
+  cliente: Cliente; 
 
   @ManyToOne(() => Producto, (producto) => producto.ventas)
   @JoinColumn({ name: 'id_producto', referencedColumnName: 'id' })
@@ -43,6 +43,6 @@ export class Venta {
   empleado: Empleado;
 
   @OneToMany(() => Ventadetalle, (ventadetalle) => ventadetalle.venta)
-  ventadetalles: Ventadetalle[]; // la venta tendra de uno a muchos detalles de venta
+  ventadetalles: Ventadetalle[]; 
 
 }

@@ -26,4 +26,16 @@ export class Cliente {
 
     @OneToMany(() => Venta, venta => venta.cliente)
     ventas: Venta[];
+    get nombreCompleto(): string {
+        return `${this.nombres} ${this.apellidos}`;
+    }
+
+    toJSON() {
+        return {
+            ...this,
+            nombreCompleto: this.nombreCompleto,
+        };
+    }
+
+
 }

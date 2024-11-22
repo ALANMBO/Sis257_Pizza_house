@@ -10,12 +10,12 @@ import {
 
 export class CreateVentaDto {
   @ApiProperty()
-  @IsNotEmpty({ message: 'El campo cantidad no de ser vacío' })
+  @IsDefined({ message: 'El campo cantidad no de ser vacío' })
   @IsNumber({}, { message: 'El campo cantidad debe ser de tipo numérico' })
   readonly cantidad: number;
 
   @ApiProperty()
-  @IsNotEmpty({ message: 'El campo precio unitario no de ser vacío' })
+  @IsDefined({ message: 'El campo precio unitario no de ser vacío' })
   @IsNumber(
     {},
     { message: 'El campo precio unitario debe ser de tipo numérico' },
@@ -23,7 +23,7 @@ export class CreateVentaDto {
   readonly precioUnitario: number;
 
   @ApiProperty()
-  @IsNotEmpty({ message: 'El campo total veta no de ser vacío' })
+  @IsDefined({ message: 'El campo total veta no de ser vacío' })
   @IsNumber(
     {},
     { message: 'El campo precio unitario debe ser de tipo numérico' },

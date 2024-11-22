@@ -32,5 +32,14 @@ export class Empleado {
     @OneToMany(() => Venta, (venta) => venta.empleado)
     ventas: Venta[];
 
+    get nombreCompleto(): string {
+        return `${this.nombres} ${this.apellidos}`;
+    }
 
+    toJSON() {
+        return {
+            ...this,
+            nombreCompleto: this.nombreCompleto,
+        };
+    }
 }
