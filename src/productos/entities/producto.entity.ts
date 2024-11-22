@@ -26,13 +26,10 @@ export class Producto {
     @UpdateDateColumn({ name: 'fecha_modificacion' })
     fechaModificacion;
 
-
-    //id:categoria
-    //varios productos pertenecen a Una categoría 
     @ManyToOne(()=>Categoria,categoria=>categoria.productos)
     @JoinColumn({name:'idCategoria',referencedColumnName:'id'})
     categoria: Categoria
-    //un producto puede tener varios ventas de detalle
+
     @OneToMany(()=>Ventadetalle,ventadetalle=>ventadetalle.producto)
     ventadetalles:Ventadetalle[];
 
