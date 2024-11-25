@@ -7,8 +7,6 @@ export class CreateVentaDetalleDto {
 
     @IsNotEmpty()
     @IsNumber()
-    
-
     readonly cantidad: number;
 
     @IsNotEmpty()
