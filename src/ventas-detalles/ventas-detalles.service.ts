@@ -9,52 +9,57 @@ import { Producto } from 'src/productos/entities/producto.entity';
 
 @Injectable()
 export class VentadetallesService {
+  constructor(
+    @InjectRepository(Ventadetalle)
+    private ventadetalleRepository: Repository<Ventadetalle>,
+  ) {}
 
-  constructor(@InjectRepository(Ventadetalle) private ventadetallesRepository: Repository<Ventadetalle>) { }
-
-
-  async create(createVentadetalleDto: CreateVentadetalleDto):Promise<Ventadetalle> {
-    const ventadetalle=this.ventadetallesRepository.create({
-      cantidad:createVentadetalleDto.cantidad.trim(),
-      subtotal:createVentadetalleDto.subtotal.trim(),
-      venta:{id:createVentadetalleDto.idVenta},
-      producto:{id:createVentadetalleDto.idProducto}
-     
+  async create(createVentadetalleDto: CreateVentadetalleDto): Promise<Ventadetalle> {
+    const ventadetalle = this.ventadetalleRepository.create({
+      cantidad: createVentadetalleDto.cantidad,
+      subtotal: createVentadetalleDto.subtotal,
+      venta: { id: createVentadetalleDto.idVenta },
+      producto: { id: createVentadetalleDto.idProducto },
     });
-    return this.ventadetallesRepository.save(ventadetalle)
+
+    return this.ventadetalleRepository.save(ventadetalle);
   }
 
-  async findAll():Promise<Ventadetalle[]> {
-    return this.ventadetallesRepository.find({relations:['venta','producto']});
+  async findAll(): Promise<Ventadetalle[]> {
+    return this.ventadetalleRepository.find({
+      relations: ['venta', 'producto'],
+    });
   }
 
- async  findOne(id: number) :Promise<Ventadetalle>{
-  const ventadetalle=await this.ventadetallesRepository.findOne({
-    where:{id},
-    relations:['venta','producto'],
-  });
-  if(!ventadetalle){
-    throw new NotFoundException(`El venta detalle con el id ${id} no existe`)
-  }
+  async findOne(id: number): Promise<Ventadetalle> {
+    const ventadetalle = await this.ventadetalleRepository.findOne({
+      where: { id },
+      relations: ['venta', 'producto'],
+    });
+    if (!ventadetalle) {
+      throw new NotFoundException(`No existe el detalle de venta con id ${id}`);
+    }
     return ventadetalle;
   }
 
-  async update(id: number, updateVentadetalleDto: UpdateVentasDetalleDto) :Promise<Ventadetalle>{
-    const ventadetalle=await this.findOne(id);
+  async update(id: number, updateVentadetalleDto: UpdateVentasDetalleDto): Promise<Ventadetalle> {
+    const ventadetalle = await this.ventadetalleRepository.findOneBy({ id });
     if (!ventadetalle) {
-      throw new NotFoundException(`La venta de  detalle con el id ${id} no existe`);
+      throw new NotFoundException(`No existe el detalle de venta con id ${id}`);
     }
-    const actuvd=Object.assign(ventadetalle,updateVentadetalleDto);
-    actuvd.venta={id:updateVentadetalleDto.idVenta} as Venta;
-    actuvd.producto={id:updateVentadetalleDto.idProducto}as Producto;
-    return this.ventadetallesRepository.save(actuvd);
+
+    const ventadetalleUpdate = Object.assign(ventadetalle, updateVentadetalleDto);
+    ventadetalleUpdate.venta = { id: updateVentadetalleDto.idVenta } as Venta;
+    ventadetalleUpdate.producto = { id: updateVentadetalleDto.idProducto } as Producto;
+
+    return this.ventadetalleRepository.save(ventadetalleUpdate);
   }
 
   async remove(id: number) {
-    const ventadetalle=await this.findOne(id);
+    const ventadetalle = await this.ventadetalleRepository.findOneBy({ id });
     if (!ventadetalle) {
-      throw new NotFoundException(`La venta de  detalle con el id ${id} no existe`);
+      throw new NotFoundException(`No existe el detalle de venta con id ${id}`);
     }
-    return this.ventadetallesRepository.delete(ventadetalle.id);
+    return this.ventadetalleRepository.delete(id);
   }
 }

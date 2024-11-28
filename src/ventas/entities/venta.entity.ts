@@ -29,10 +29,9 @@ export class Venta {
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
 
-  
   @ManyToOne(() => Cliente, (cliente) => cliente.ventas)
   @JoinColumn({ name: 'idCliente', referencedColumnName: 'id' })
-  cliente: Cliente; 
+  cliente: Cliente;
 
   @ManyToOne(() => Producto, (producto) => producto.ventas)
   @JoinColumn({ name: 'id_producto', referencedColumnName: 'id' })
@@ -43,6 +42,5 @@ export class Venta {
   empleado: Empleado;
 
   @OneToMany(() => Ventadetalle, (ventadetalle) => ventadetalle.venta)
-  ventadetalles: Ventadetalle[]; 
-
+  ventadetalles: Ventadetalle[];
 }

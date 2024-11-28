@@ -1,28 +1,20 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDefined, IsNotEmpty, IsNumber, IsString, MaxLength, Min, MinLength } from 'class-validator';
-import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { IsDefined, IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class CreateVentadetalleDto {
-  
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo cantidad no debe ser vacío' })
   @IsString({ message: 'El campo cantidad debe ser de tipo cadena' })
-  @MaxLength(50, { message: 'El campo cantidad no debe ser nemor a 50 caracteres'})
-  @MinLength(1, {message: 'El campo cantidad no debe ser mayor a 1 caracteres'})
+  @MaxLength(50, { message: 'El campo cantidad no debe ser mayor a 50 caracteres' })
+  @MinLength(1, { message: 'El campo cantidad no debe ser menor a 1 caracter' })
   readonly cantidad: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo subtotal no debe ser vacío' })
   @IsString({ message: 'El campo subtotal debe ser de tipo cadena' })
-  @MaxLength(50, { message: 'El campo subtotal no debe ser nemor a 50 caracteres'})
-  @MinLength(1, {message: 'El campo subtotal no debe ser mayor a 4 caracteres'})
+  @MaxLength(50, { message: 'El campo subtotal no debe ser mayor a 50 caracteres' })
+  @MinLength(1, { message: 'El campo subtotal no debe ser menor a 1 caracter' })
   readonly subtotal: string;
-
-  @CreateDateColumn({ name: 'fecha_creacion' })
-  fechaCreacion: Date;
-
-  @UpdateDateColumn({ name: 'fecha_modificacion' })
-  fechaModificacion: Date;
 
   @ApiProperty()
   @IsDefined({ message: 'El campo idVenta debe estar definido' })

@@ -10,12 +10,12 @@ import {
 
 export class CreateVentaDto {
   @ApiProperty()
-  @IsDefined({ message: 'El campo cantidad no de ser vacío' })
+  @IsDefined({ message: 'El campo cantidad no debe ser vacío' })
   @IsNumber({}, { message: 'El campo cantidad debe ser de tipo numérico' })
   readonly cantidad: number;
 
   @ApiProperty()
-  @IsDefined({ message: 'El campo precio unitario no de ser vacío' })
+  @IsDefined({ message: 'El campo precio unitario no debe ser vacío' })
   @IsNumber(
     {},
     { message: 'El campo precio unitario debe ser de tipo numérico' },
@@ -23,17 +23,16 @@ export class CreateVentaDto {
   readonly precioUnitario: number;
 
   @ApiProperty()
-  @IsDefined({ message: 'El campo total veta no de ser vacío' })
+  @IsDefined({ message: 'El campo total venta no debe ser vacío' })
   @IsNumber(
     {},
-    { message: 'El campo precio unitario debe ser de tipo numérico' },
+    { message: 'El campo total venta debe ser de tipo numérico' },
   )
   readonly totalVenta: number;
 
-
   @ApiProperty()
-  @IsDefined({ message: 'El campo idVEnta debe estar definido' })
-  @IsNumber({}, { message: 'El campo idVEnta debe ser de tipo numérico' })
+  @IsDefined({ message: 'El campo idCliente debe estar definido' })
+  @IsNumber({}, { message: 'El campo idCliente debe ser de tipo numérico' })
   readonly idCliente: number;
 
   @ApiProperty()
@@ -45,10 +44,4 @@ export class CreateVentaDto {
   @IsDefined({ message: 'El campo idEmpleado debe estar definido' })
   @IsNumber({}, { message: 'El campo idEmpleado debe ser de tipo numérico' })
   readonly idEmpleado: number;
-
-
-
-
-
-  
 }

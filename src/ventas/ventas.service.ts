@@ -1,4 +1,4 @@
-import {ConflictException,Injectable,NotFoundException,} from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateVentaDto } from './dto/create-venta.dto';
 import { UpdateVentaDto } from './dto/update-venta.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -15,13 +15,13 @@ export class VentasService {
   ) {}
 
   async create(createVentaDto: CreateVentaDto): Promise<Venta> {
-    const venta =  this.ventasRepository.create({
-      cantidad: createVentaDto.cantidad.valueOf(),
+    const venta = this.ventasRepository.create({
+      cantidad: createVentaDto.cantidad,
       precioUnitario: createVentaDto.precioUnitario,
       totalVenta: createVentaDto.totalVenta,
       cliente: { id: createVentaDto.idCliente },
       producto: { id: createVentaDto.idProducto },
-      empleado: { id: createVentaDto.idEmpleado }
+      empleado: { id: createVentaDto.idEmpleado },
     });
 
     return this.ventasRepository.save(venta);
@@ -29,44 +29,38 @@ export class VentasService {
 
   async findAll(): Promise<Venta[]> {
     return this.ventasRepository.find({
-      relations: ['cliente', 'producto','empleado'],
+      relations: ['cliente', 'producto', 'empleado'],
     });
   }
 
   async findOne(id: number): Promise<Venta> {
-    const existeventa = await this.ventasRepository.findOne({
+    const venta = await this.ventasRepository.findOne({
       where: { id },
-      relations: ['cliente', 'producto','empleado'],
+      relations: ['cliente', 'producto', 'empleado'],
     });
-    if (!existeventa) {
-      throw new NotFoundException(`No existe ventas de venta ${id}`);
+    if (!venta) {
+      throw new NotFoundException(`No existe la venta con id ${id}`);
     }
-    return existeventa;
+    return venta;
   }
 
   async update(id: number, updateVentaDto: UpdateVentaDto): Promise<Venta> {
-    const ventas = await this.ventasRepository.findOneBy({ id });
-    if (!ventas) {
-      throw new NotFoundException(`No existe ventas de venta ${id}`);
+    const venta = await this.ventasRepository.findOneBy({ id });
+    if (!venta) {
+      throw new NotFoundException(`No existe la venta con id ${id}`);
     }
-    const ventaUpdate = Object.assign(ventas, updateVentaDto);
-    ventaUpdate.cliente = {
-      id: updateVentaDto.idCliente,
-    } as Cliente;
-    ventaUpdate.producto = {
-      id: updateVentaDto.idProducto,
-    } as Producto;
+    const ventaUpdate = Object.assign(venta, updateVentaDto);
+    ventaUpdate.cliente = { id: updateVentaDto.idCliente } as Cliente;
+    ventaUpdate.producto = { id: updateVentaDto.idProducto } as Producto;
+    ventaUpdate.empleado = { id: updateVentaDto.idEmpleado } as Empleado;
 
-    ventaUpdate.empleado = {
-      id: updateVentaDto.idEmpleado,
-    } as Empleado;
     return this.ventasRepository.save(ventaUpdate);
   }
 
   async remove(id: number) {
-    const ventas = await this.ventasRepository.findOneBy({ id });
-    if (!ventas) {
-      throw new NotFoundException(`No existe ventas de venta ${id}`);
+    const venta = await this.ventasRepository.findOneBy({ id });
+    if (!venta) {
+      throw new NotFoundException(`No existe la venta con id ${id}`);
     }
     return this.ventasRepository.delete(id);
   }
