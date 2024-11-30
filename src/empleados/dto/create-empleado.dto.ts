@@ -26,7 +26,6 @@ export class CreateEmpleadoDto {
     @MinLength(4, { message: 'El campo cargo no debe ser mayor a 4 caracteres' })
     readonly cargo: string;
 
-
     @ApiProperty()
     @IsNumber({}, { message: 'El campo salario debe ser un número' })
     @Min(0, { message: 'El campo salario no debe ser negativo' })
