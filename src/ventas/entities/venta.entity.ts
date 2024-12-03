@@ -16,7 +16,7 @@ import {
 export class Venta {
   @PrimaryGeneratedColumn()
   id: number;
-
+  
   @Column()
   cantidad: number;
 
