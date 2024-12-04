@@ -22,7 +22,6 @@ import { VentasDetallesModule } from './ventas-detalles/ventas-detalles.module';
       database: process.env.DB_NAME || 'railway',
       entities: [__dirname + '/**/*.entity.{ts,js}'], 
       autoLoadEntities: true,
-    
       ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
     }),
     ClientesModule,
