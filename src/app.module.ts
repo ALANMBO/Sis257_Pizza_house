@@ -16,9 +16,9 @@ import { VentasDetallesModule } from './ventas-detalles/ventas-detalles.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST || 'autorack.proxy.rlwy.net', 
-      port: +process.env.DB_PORT || 45032,     
+      port: +process.env.DB_PORT || 16757,     
       username: process.env.DB_USERNAME || 'postgres',
-      password: process.env.DB_PASSWORD || 'eKNqurfoPmtZuVfuBuwQtyxOIJXqNCuv',
+      password: process.env.DB_PASSWORD || 'wnoTjoaxhZphkpKPeuuPdMvxkIBmJewe',
       database: process.env.DB_NAME || 'railway',
       entities: [__dirname + '/**/*.entity.{ts,js}'], 
       autoLoadEntities: true,
