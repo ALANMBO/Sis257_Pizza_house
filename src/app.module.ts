@@ -29,7 +29,6 @@ import { VentasDetallesModule } from './ventas-detalles/ventas-detalles.module';
   CategoriasModule,
   VentasModule,
   VentasDetallesModule,
-  VentasDetallesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
